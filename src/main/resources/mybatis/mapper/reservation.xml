@@ -44,8 +44,9 @@
 	
 	<update id="update" parameterType="reservation">
 		UPDATE reservation
-		SET selecteddate, selectedtime, isfixed, ispending
-			, isdiscount, resdesc
+		SET selecteddate=#{selecteddate}, selectedtime=#{selectedtime}
+			, isfixed=#{isfixed}, ispending=#{ispending}
+			, isdiscount=#{isdiscount}, resdesc=#{resdesc}
 		WHERE resno=#{resno}
 	</update>
 </mapper>
