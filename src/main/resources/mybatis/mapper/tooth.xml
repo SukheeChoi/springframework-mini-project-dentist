@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.ToothDao">
+	<select id="selectByTreatno" parameterType="String" resultType="tooth">
+		SELECT treatno, toothno FROM materials WHERE treatno = #{treatno}
+	</select>
+	
+	<insert id="insert" parameterType="tooth">
+		INSERT INTO tooth (treatno, toothno)
+		VALUES (#{treatno}, #{toothno})
+	</insert>
+	
+	<update id="update" parameterType="tooth">
+		UPDATE tooth SET toothno=#{newtooth.toothno}
+		WHERE tooth.treatno=#{tooth.treatno} AND tooth.toothno=#{tooth.toothno} 
+	</update>
+	
+	<delete id="delete" parameterType="tooth">
+		DELETE FROM tooth
+		WHERE treatno=#{treatno} AND toothno=#{toothno}
+	</delete>
+	
+</mapper>

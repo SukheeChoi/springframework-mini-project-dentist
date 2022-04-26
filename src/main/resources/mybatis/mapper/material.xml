@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.MaterialDao">
+	<select id="select" resultType="material">
+		SELECT treattype, materialcompany FROM materials
+	</select>
+	
+	<select id="selectByTreattype" parameterType="String" resultType="material">
+		SELECT treattype, materialcompany FROM materials WHERE treattype = #{treattype}
+	</select>
+	
+	<insert id="insert" parameterType="material">
+		INSERT INTO materials (treattype, materialcompany)
+		VALUES (#{treattype}, #{materialcompany})
+	</insert>
+	
+	<update id="update" parameterType="material">
+		UPDATE materials SET treattype=#{newmaterials.treattype}, materialcompany=#{newmaterials.materialcompany},
+		WHERE treattype=#{materials.treattype} AND materialcompany=#{materials.materialcompany}
+	</update>
+	
+	<delete id="delete" parameterType="material">
+		DELETE FROM materials
+		WHERE treattype=#{treattype} AND materialcompany=#{materialcompany}
+	</delete>
+	
+</mapper>

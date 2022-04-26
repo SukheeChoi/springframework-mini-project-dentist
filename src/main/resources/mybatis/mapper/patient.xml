@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.PatientDao">
+	<select id="selectByPatientssn" parameterType="String" resultType="patient">
+		SELECT patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn FROM patients WHERE patientssn = #{patientssn}
+	</select>
+	
+	<select id="selectAll" resultType="patient">
+		SELECT patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn FROM patients
+	</select>
+	
+	<insert id="insert" parameterType="patient">
+		INSERT INTO patients (patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn)
+		VALUES (#{patientname}, #{patientbirthdate}, #{patientsex}, #{patientphone}, #{patientaddress}, #{patientssn})
+	</insert>
+	
+	<update id="update" parameterType="patient">
+		UPDATE patients SET patientname=#{patientname}, patientbirthdate=#{patientbirthdate}, patientsex=#{patientsex}, patientphone=#{patientphone},
+			       		   patientaddress=#{patientaddress}
+		WHERE patientssn=#{patientssn}
+	</update>
+	
+	<delete id="deleteByPatientssn" parameterType="String">
+		DELETE FROM patients
+		WHERE patientssn=#{patientssn}
+	</delete>
+	
+</mapper>

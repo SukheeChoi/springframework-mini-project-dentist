@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.AvailablehourDao">
+	<select id="selectBydate" parameterType="date" resultType="availablehour">
+		SELECT availabledate, availabletime FROM availablehours WHERE availabledate=#{availabledate}
+	</select>
+	
+	<select id="selectAll" parameterType="period" resultType="availablehour">
+		SELECT availabledate, availabletime FROM availablehours where availabledate between #{startdate} and #{enddate}
+	</select>
+	
+	<insert id="insert" parameterType="availablehour">
+		INSERT INTO availablehours (availabledate, availabletime)
+		VALUES (#{availabledate}, #{availabletime})
+	</insert>
+	
+	<update id="update" parameterType="availablehour">
+		UPDATE availablehours SET availabledate=#{newavailablehours.availabledate}, availabletime=#{newavailablehours.availabletime} 
+		WHERE availabledate=#{availablehours.availabledate} AND availabletime=#{availablehours.availabletime}
+	</update>
+</mapper>

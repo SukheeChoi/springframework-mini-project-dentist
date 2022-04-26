@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.RiviewDao">
+	<select id="selectByPage" parameterType="pager" resultType="review">
+		SELECT rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount
+		FROM (
+		  SELECT ROWNUM as rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount
+		  FROM (
+		    SELECT reviewno, userid, starscore, reviewcontent, lastvisitcount
+		    FROM reviews
+		    ORDER BY reviewno DESC
+		  )
+		  WHERE rownum &lt;= #{endRowNo}  
+		)
+		WHERE rnum &gt;= #{startRowNo}
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT count(*) FROM reviews
+	</select>
+	
+	<insert id="insert" parameterType="review">
+		INSERT INTO reviews (reviewno, userid, starscore, reviewcontent, lastvisitcount)
+		VALUES (#{reviewno}, #{userid}, #{starscore}, #{reviewcontent}, #{lastvisitcount})
+	</insert>
+	
+	<update id="update" parameterType="review">
+		UPDATE reviews SET userid=#{userid}, starscore=#{starscore}, reviewcontent=#{reviewcontent},
+			       		   lastvisitcount=#{lastvisitcount}
+		WHERE reviewno=#{reviewno}
+	</update>
+	
+	<delete id="deleteByReviewno" parameterType="int">
+		DELETE FROM reviews
+		WHERE reviewno=#{reviewno}
+	</delete>
+	
+</mapper>
