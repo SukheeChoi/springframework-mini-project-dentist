@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mycompany.webapp.dao.mybatis.TreatmentsDao">
-	<select id="selectByPatientssn" parameterType="string" resultType="treatments">
+<mapper namespace="com.mycompany.webapp.dao.mybatis.TreatmentDao">
+	<select id="selectByPatientssn" parameterType="string" resultType="treatment">
 		SELECT treatno, isreviewed, treattype, doctorname
 			, treatcost, treatedate, doctorcomment
 			, materialcompany, patientssn
@@ -11,7 +11,7 @@
 		WHERE patientssn=#{patientssn}
 	</select>
 	
-	<select id="selectByTreatType" resultType="treatments">
+	<select id="selectByTreatType" resultType="treatment">
 		SELECT treatno, isreviewed, treattype, doctorname
 			, treatcost, treatedate, doctorcomment
 			, materialcompany, patientssn
@@ -20,7 +20,7 @@
 			AND treattype=#{treattype}
 	</select>
 	
-	<insert id="insert" parameterType="treatments">
+	<insert id="insert" parameterType="treatment">
 		<selectKey keyProperty="treatno" resultType="int" order="BEFORE">
 			select SEQ_TREATNO.nextval from dual
 		</selectKey>
@@ -35,7 +35,7 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="treatments">
+	<update id="update" parameterType="treatment">
 		UPDATE treatments
 		SET isreviewed=#{isreviewed}, treattype=#{treattype}, doctorname=#{doctorname}
 			, treatcost=#{treatcost}, treatedate=#{treatedate}, doctorcomment=#{doctorcomment}

@@ -3,7 +3,7 @@ package com.mycompany.webapp.dto;
 import lombok.Data;
 
 @Data
-public class Reviews {
+public class Review {
 	private String reviewno;
 	private int userid;
 	private double starscore;

@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Availablehours {
+public class Availablehour {
 	private Date Availabledate;
 	private String Availabletime;
 }

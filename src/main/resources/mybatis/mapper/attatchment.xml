@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.AttachmentDao">
+	<select id="selectBytreatno" parameterType="int" resultType="attachment">
+		SELECT treatno, bcontenttype, boriginalfilename, bsavedfilename, acontenttype, aoriginalfilename, asavedfilename FROM attachments WHERE treatno=#{treatno}
+	</select>
+	
+	<insert id="insert" parameterType="attachment">
+		INSERT INTO attachments (treatno, bcontenttype, boriginalfilename, bsavedfilename, acontenttype, aoriginalfilename, asavedfilename)
+		VALUES (#{treatno}, #{bcontenttype}, #{boriginalfilename}, #{bsavedfilename}, #{acontenttype}, #{aoriginalfilename}, #{asavedfilename})
+	</insert>
+	
+	<update id="update" parameterType="attachment">
+		UPDATE attachments SET bcontenttype=#{newattachment.bcontenttype}, boriginalfilename=#{newattachment.boriginalfilename}, bsavedfilename=#{newattachment.bsavedfilename}
+							   acontenttype=#{newattachment.acontenttype}, aoriginalfilename=#{newattachment.aoriginalfilename}, asavedfilename=#{newattachment.asavedfilename} 
+		WHERE treatno=#{treatno}, bcontenttype=#{attachment.bcontenttype}, boriginalfilename=#{attachment.boriginalfilename}, bsavedfilename=#{attachment.bsavedfilename}
+							   	  acontenttype=#{attachment.acontenttype}, aoriginalfilename=#{attachment.aoriginalfilename}, asavedfilename=#{attachment.asavedfilename} 
+	</update>
+	<delete id="delete" parameterType="attachment">
+		delete from attachments WHERE treatno=#{treatno}, bcontenttype=#{bcontenttype}, boriginalfilename=#{boriginalfilename}, bsavedfilename=#{bsavedfilename}
+							   	      acontenttype=#{acontenttype}, aoriginalfilename=#{aoriginalfilename}, asavedfilename=#{asavedfilename} 
+	</delete>
+</mapper>

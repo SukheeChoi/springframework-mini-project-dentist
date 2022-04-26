@@ -8,16 +8,17 @@
 <!-- 루트 태그(엘리먼트) -->
 <configuration>
 	  <typeAliases>
-	      <typeAlias type="com.mycompany.webapp.dto.Attachments" alias="attachments"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Availablehours" alias="availablehours"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Businesshours" alias="businesshours"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Attachment" alias="attachment"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Availablehour" alias="availablehour"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Businesshour" alias="businesshour"/>
 	      <typeAlias type="com.mycompany.webapp.dto.Deninfo" alias="deninfo"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Materials" alias="materials"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Patients" alias="patients"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Material" alias="material"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Patient" alias="patient"/>
 	      <typeAlias type="com.mycompany.webapp.dto.Reservation" alias="reservation"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Reviews" alias="reviews"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Review" alias="review"/>
 	      <typeAlias type="com.mycompany.webapp.dto.Tooth" alias="tooth"/>
-	      <typeAlias type="com.mycompany.webapp.dto.Treatments" alias="treatments"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Treatment" alias="treatment"/>
 	      <typeAlias type="com.mycompany.webapp.dto.Pager" alias="pager"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Period" alias="period"/>
    </typeAliases>
 </configuration> 

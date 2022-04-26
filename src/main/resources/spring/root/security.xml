@@ -24,7 +24,7 @@
 			password-parameter="mpassword"
 			login-processing-url="/login" 
 			authentication-success-handler-ref="authenticationSuccessHandler"
-         	authentication-failure-handler-ref="authenticationFailureHandler" />
+         	authentication-failure-handler-ref="authenticationFailureHandler"/>
 			
 		<!-- 로그아웃 -->	
 		<!-- <security:logout logout-url="/logout"
@@ -121,7 +121,7 @@
 		</property>
 	</bean>
 	
-	<!-- <bean id="authenticationSuccessHandler" class="com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler">
+	<bean id="authenticationSuccessHandler" class="com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler">
 		<property name="alwaysUseDefaultTargetUrl" value="false"></property>
 		<property name="defaultTargetUrl" value="/ch17/content"></property>
 	</bean>
@@ -132,6 +132,6 @@
 	
 	<bean id="logoutSuccessHandler" class="com.mycompany.webapp.security.Ch17LogoutSuccessHandler">
 		<property name="defaultTargetUrl" value="/ch17/content"></property>
-	</bean> -->
+	</bean>
 	
 </beans>

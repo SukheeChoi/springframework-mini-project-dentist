@@ -3,7 +3,7 @@ package com.mycompany.webapp.dto;
 import lombok.Data;
 
 @Data
-public class Patients {
+public class Patient {
 	private String patientname;
 	private String patientbirthdate;
 	private String patientsex;
