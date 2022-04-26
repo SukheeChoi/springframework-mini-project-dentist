@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.TreatmentsDao">
+	<select id="selectByPatientssn" parameterType="string" resultType="treatments">
+		SELECT treatno, isreviewed, treattype, doctorname
+			, treatcost, treatedate, doctorcomment
+			, materialcompany, patientssn
+		FROM treatments
+		WHERE patientssn=#{patientssn}
+	</select>
+	
+	<select id="selectByTreatType" resultType="treatments">
+		SELECT treatno, isreviewed, treattype, doctorname
+			, treatcost, treatedate, doctorcomment
+			, materialcompany, patientssn
+		FROM treatments
+		WHERE patientssn=#{patientssn}
+			AND treattype=#{treattype}
+	</select>
+	
+	<insert id="insert" parameterType="treatments">
+		<selectKey keyProperty="treatno" resultType="int" order="BEFORE">
+			select SEQ_TREATNO.nextval from dual
+		</selectKey>
+		INSERT INTO treatments
+			treatno, isreviewed, treattype, doctorname
+			, treatcost, treatedate, doctorcomment
+			, materialcompany, patientssn
+		VALUES(
+			#{treatno}, #{isreviewed}, #{treattype}, #{doctorname}
+			, #{treatcost}, #{treatedate}, #{doctorcomment}
+			, #{materialcompany}, #{patientssn}
+		)
+	</insert>
+	
+	<update id="update" parameterType="treatments">
+		UPDATE treatments
+		SET isreviewed=#{isreviewed}, treattype=#{treattype}, doctorname=#{doctorname}
+			, treatcost=#{treatcost}, treatedate=#{treatedate}, doctorcomment=#{doctorcomment}
+			, materialcompany=#{materialcompany}, patientssn=#{patientssn}
+		WHERE treatno=#{treatno}
+	</update>
+	
+	<delete id="deleteByTreatno" parameterType="int">
+		DELETE FROM treatments
+		WHERE treatno=#{treatno}
+	</delete>
+</mapper>
+
