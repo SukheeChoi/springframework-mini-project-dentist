@@ -1,1 +1,5 @@
 /target/
+.metadata
+.DB_Store
+.DS_Store
+.gitignore
