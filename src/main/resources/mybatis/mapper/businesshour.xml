@@ -3,7 +3,7 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.BusinesshourDao">
-	<select id="selectByBusinessday" parameterType="String" resultType="businesshour">
+	<select id="selectByBusinessday" parameterType="string" resultType="businesshour">
 		SELECT businessday, businesshour FROM businesshours WHERE businessday=#{businessday}
 	</select>
 	
