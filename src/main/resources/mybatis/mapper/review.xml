@@ -16,6 +16,21 @@
 		)
 		WHERE rnum &gt;= #{startRowNo}
 	</select>
+
+	<select id="selectByUserid" resultType="review">
+		SELECT rnum, reviewno, starscore, reviewcontent, lastvisitcount
+		FROM (
+		  SELECT ROWNUM as rnum, reviewno, starscore, reviewcontent, lastvisitcount
+		  FROM (
+		    SELECT reviewno, starscore, reviewcontent, lastvisitcount
+		    FROM reviews
+		    WHERE userid = #{userid}
+		    ORDER BY reviewno DESC
+		  )
+		  WHERE rownum &lt;= #{pager.endRowNo}
+		)
+		WHERE rnum &gt;= #{pager.startRowNo}
+	</select>
 	
 	<select id="count" resultType="int">
 		SELECT count(*) FROM reviews
