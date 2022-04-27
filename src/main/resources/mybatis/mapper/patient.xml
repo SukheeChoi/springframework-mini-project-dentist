@@ -7,6 +7,10 @@
 		SELECT patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn FROM patients WHERE patientssn = #{patientssn}
 	</select>
 	
+	<select id="selectByPatientName" parameterType="String" resultType="patient">
+		SELECT patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn FROM patients WHERE patientname = #{patientname}
+	</select>
+	
 	<select id="selectAll" resultType="patient">
 		SELECT patientname, patientbirthdate, patientsex, patientphone, patientaddress, patientssn FROM patients
 	</select>

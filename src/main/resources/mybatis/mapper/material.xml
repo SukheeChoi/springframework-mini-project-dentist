@@ -7,7 +7,7 @@
 		SELECT treattype, materialcompany FROM materials
 	</select>
 	
-	<select id="selectByTreattype" parameterType="String" resultType="material">
+	<select id="selectByTreattype" parameterType="string" resultType="material">
 		SELECT treattype, materialcompany FROM materials WHERE treattype = #{treattype}
 	</select>
 	
