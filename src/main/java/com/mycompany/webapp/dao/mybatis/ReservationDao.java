@@ -12,6 +12,6 @@ import com.mycompany.webapp.dto.Reservation;
 public interface ReservationDao {
 	public List<Reservation> selectByUserid(@Param("patientssn") String patientssn, @Param("pager") Pager pager);
 	public int insert(Reservation reservation);
-	//예약 수정, 취소.
+	//예약 수정, 취소, 확정.
 	public int update(Reservation reservation);
 }
