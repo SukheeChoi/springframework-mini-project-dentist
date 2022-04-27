@@ -18,26 +18,32 @@ public class PatientService {
 	@Resource
 	private PatientDao patientDao;
 	
-	public Patient searchByPatientssn(String patientssn) {
+	//주민번호로 환자 검색하기
+	public Patient getPatientsByPatientssn(String patientssn) {
 		return patientDao.selectByPatientssn(patientssn);
 	}
 	
-	public List<Patient> searchByPatientName(String patientname) {
+	//이름으로 환자 검색하기
+	public List<Patient> getPatientsByPatientName(String patientname) {
 		return patientDao.selectByPatientName(patientname);
 	}
 	
-	public List<Patient> searchAll() {
+	//전체 환자 검색하기
+	public List<Patient> getPatientsAll() {
 		return patientDao.selectAll();
 	}
 	
+	//환자 등록하기
 	public void createPatient(Patient patient) {
 		patientDao.insert(patient);
 	}
 	
+	//환자 정보 수정하기
 	public void updatePatient(Patient patient) {
 		patientDao.update(patient);
 	}
 	
+	//환자 삭제하기
 	public void removePatient(String patientssn) {
 		patientDao.deleteByPatientssn(patientssn);
 	}
