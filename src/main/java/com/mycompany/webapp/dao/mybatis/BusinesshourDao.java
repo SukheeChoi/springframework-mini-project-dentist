@@ -2,10 +2,12 @@ package com.mycompany.webapp.dao.mybatis;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.mycompany.webapp.dto.Businesshour;
 
+@Mapper
 public interface BusinesshourDao {
 	public Businesshour selectByBusinessday(String businessday); //각각 요일에 대한 영업시간 조회
 	public List<Businesshour> selectAll(); //전체(월~일) 영업시간 조회
