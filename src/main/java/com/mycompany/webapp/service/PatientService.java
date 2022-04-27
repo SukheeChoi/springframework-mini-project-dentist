@@ -16,30 +16,30 @@ import lombok.extern.log4j.Log4j2;
 public class PatientService {
 	
 	@Resource
-	private PatientDao patientdao;
+	private PatientDao patientDao;
 	
 	public Patient searchByPatientssn(String patientssn) {
-		return patientdao.selectByPatientssn(patientssn);
+		return patientDao.selectByPatientssn(patientssn);
 	}
 	
 	public List<Patient> searchByPatientName(String patientname) {
-		return patientdao.selectByPatientName(patientname);
+		return patientDao.selectByPatientName(patientname);
 	}
 	
 	public List<Patient> searchAll() {
-		return patientdao.selectAll();
+		return patientDao.selectAll();
 	}
 	
 	public void createPatient(Patient patient) {
-		patientdao.insert(patient);
+		patientDao.insert(patient);
 	}
 	
 	public void updatePatient(Patient patient) {
-		patientdao.update(patient);
+		patientDao.update(patient);
 	}
 	
 	public void removePatient(String patientssn) {
-		patientdao.deleteByPatientssn(patientssn);
+		patientDao.deleteByPatientssn(patientssn);
 	}
 	
 }
