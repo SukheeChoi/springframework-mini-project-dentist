@@ -29,16 +29,16 @@
 	
 	<insert id="insert" parameterType="reservation">
 		<selectKey keyProperty="resno" resultType="int" order="BEFORE">
-			select SEQ_RESNO.nextval from dual
+			select RESNO_SEQ.nextval from dual
 		</selectKey>
 		INSERT INTO reservation
-			resno, patientname, patientphone, selecteddate
+			(resno, patientname, patientphone, selecteddate
 			, selectedtime, isfixed, ispending, isdiscount
-			, resdesc, canceldesc, submitdate, patientssn
+			, resdesc, canceldesc, submitdate, patientssn)
 		VALUES(
 			#{resno}, #{patientname}, #{patientphone}, #{selecteddate}
 			, #{selectedtime}, #{isfixed}, #{ispending}, #{isdiscount}
-			, #{resdesc}, #{canceldesc}, #{submitdate}, #{patientssn}
+			, #{resdesc}, #{canceldesc}, SYSDATE, #{patientssn}
 		)
 	</insert>
 	

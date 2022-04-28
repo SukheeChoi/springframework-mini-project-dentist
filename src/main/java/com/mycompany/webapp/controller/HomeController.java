@@ -1,29 +1,29 @@
 package com.mycompany.webapp.controller;
 
-import java.util.Locale;
+import javax.annotation.Resource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * Handles requests for the application home page.
- */
-@Controller
-public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+import com.mycompany.webapp.service.TreatmentService;
 
+import lombok.extern.log4j.Log4j2;
+
+@Controller
+@Log4j2
+public class HomeController {
+	@Resource
+	private TreatmentService treatmentService;
+	
 	@RequestMapping("/")
-	public String home(Locale locale, Model model) {
-		logger.info("실행");
-		return "home";//수정 필요
+	public String home() throws Exception {
+
+		return "home"; 
 	}
 	
 	@RequestMapping("/bookAReservation")
 	public String bookAReservation() {
-		return "/bookAReservation";
+		return "/home";
 	}
 
 }

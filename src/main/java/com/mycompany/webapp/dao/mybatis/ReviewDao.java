@@ -14,6 +14,6 @@ public interface ReviewDao {
 	public List<Review> selectByUserid(@Param("userid") String userid, @Param("pager") Pager pager);
 	public int count();
 	public int countByUserid(String userid);
-	public int insert(Review reviews);
-	public int update(Review reviews);
+	public int insert(Review review);
+	public int update(Review review);
 }

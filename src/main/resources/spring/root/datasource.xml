@@ -6,7 +6,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
 		<property name="url" value="jdbc:log4jdbc:oracle:thin:@kosa1.iptime.org:50105:orcl"></property>
-		<property name="username" value="teethtory_user"></property>
+		<property name="username" value="teethtory_dentist"></property>
 		<property name="password" value="teethtory"></property>
 		<property name="initialSize" value="2"></property>
 		<property name="maxTotal" value="3"></property>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mycompany.webapp.dao.mybatis.RiviewDao">
+<mapper namespace="com.mycompany.webapp.dao.mybatis.ReviewDao">
 	<select id="selectByPage" parameterType="pager" resultType="review">
 		SELECT rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount
 		FROM (
@@ -42,7 +42,7 @@
 	
 	<insert id="insert" parameterType="review">
 		<selectKey keyProperty="reviewno" resultType="int" order="BEFORE">
-			select SEQ_REVIEWNO.nextval from dual
+			select REVIEWNO_SEQ.nextval from dual
 		</selectKey>
 		INSERT INTO reviews (reviewno, userid, starscore, reviewcontent, lastvisitcount)
 		VALUES (#{reviewno}, #{userid}, #{starscore}, #{reviewcontent}, #{lastvisitcount})
