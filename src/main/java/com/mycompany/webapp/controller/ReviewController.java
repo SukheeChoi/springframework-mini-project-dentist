@@ -32,7 +32,45 @@ public class ReviewController {
 		/*
 		 요청은 이런식 => getReviews?pageNo=1
 		 http://localhost:8080/springframework-mini-project-dentist/review/getReviews?pageNo=1
-		 응답은 이런식 => {"date", "0000000001111111111100000000000"}
+		 http://localhost:8080/springframework-mini-project-dentist/review/getReviews?pageNo=2
+		 응답은 이런식 =>  "review": [
+			        {
+			            "lastvisitcount": 500,
+			            "reviewno": "500",
+			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
+			            "userid": "spring",
+			            "starscore": 4.5
+			        },
+			        {
+			            "lastvisitcount": 499,
+			            "reviewno": "499",
+			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
+			            "userid": "spring",
+			            "starscore": 4.5
+			        },
+			        {
+			            "lastvisitcount": 498,
+			            "reviewno": "498",
+			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
+			            "userid": "spring",
+			            "starscore": 4.5
+			        },
+			        {
+			            "lastvisitcount": 497,
+			            "reviewno": "497",
+			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
+			            "userid": "spring",
+			            "starscore": 4.5
+			        },
+			        {
+			            "lastvisitcount": 496,
+			            "reviewno": "496",
+			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
+			            "userid": "spring",
+			            "starscore": 4.5
+			        }
+			    ]
+			}
 		*/
 		int totalReviewNum = reviewService.getTotalReviewCount();
 		
@@ -40,6 +78,7 @@ public class ReviewController {
 		List<Review> reviews = reviewService.getReviews(pager);
 		
 		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("reviewNum", totalReviewNum);
 		jsonObject.put("review", reviews);
 		String json = jsonObject.toString();
 		return json;
