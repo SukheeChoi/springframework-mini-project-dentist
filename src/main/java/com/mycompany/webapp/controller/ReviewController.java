@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.webapp.dto.Availablehour;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Review;
-import com.mycompany.webapp.service.AvailablehourService;
 import com.mycompany.webapp.service.ReviewService;
 
 import lombok.extern.log4j.Log4j2;
