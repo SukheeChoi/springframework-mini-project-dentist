@@ -3,17 +3,17 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.DeninfoDao">
-	<select id="selectAll" resultType="deninfo">
-		SELECT denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno FROM deninfo
+	<select id="select" resultType="deninfo">
+		SELECT denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno, denlongitude, denlatitude FROM deninfo
 	</select>
 	
 	<insert id="insert" parameterType="deninfo">
-		INSERT INTO deninfo (denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno)
-		VALUES (#{denname}, #{dencontact}, #{denaddress}, #{imagecontenttype}, #{imagefilename}, #{denowner}, #{denregistno})
+		INSERT INTO deninfo (denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno, denlongitude, denlatitude)
+		VALUES (#{denname}, #{dencontact}, #{denaddress}, #{imagecontenttype}, #{imagefilename}, #{denowner}, #{denregistno}, #{denlongitude}, #{denlatitude})
 	</insert>
 	
 	<update id="update" parameterType="deninfo">
 		UPDATE deninfo SET denname=#{denname}, dencontact=#{dencontact}, denaddress=#{denaddress}, imagecontenttype=#{imagecontenttype},
-			       		   imagefilename=#{imagefilename}, denowner=#{denowner}, denregistno=#{denregistno}
+			       		   imagefilename=#{imagefilename}, denowner=#{denowner}, denregistno=#{denregistno}, denlongitude=#{denlongitude}, denlatitude=#{denlatitude}
 	</update>
 </mapper>

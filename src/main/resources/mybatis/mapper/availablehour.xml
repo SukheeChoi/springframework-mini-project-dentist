@@ -4,7 +4,7 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.AvailablehourDao">
 	<select id="selectBydate" parameterType="date" resultType="availablehour">
-		SELECT availabledate, availabletime FROM availablehours WHERE availabledate=#{availabledate}
+		SELECT availabledate, availabletime FROM availablehours WHERE availabledate= TO_CHAR(#{availabledate}, 'YY/MM/DD')
 	</select>
 	
 	<select id="selectAll" parameterType="period" resultType="availablehour">
