@@ -35,7 +35,6 @@ public class AvailablehourController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("date", dbdate.getAvailabletime());
 		String json = jsonObject.toString();
-		log.info(dbdate);
 		return json;
 	}
 }
