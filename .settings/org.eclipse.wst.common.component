@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                            	
-<<<<<<< HEAD
-    
-=======
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project-dentist.git
+                                	
     
     
     
     
     
-<<<<<<< HEAD
-    <wb-module deploy-name="springframework-mini-project-1.0.0-BUILD-SNAPSHOT">
-=======
+    
     
     <wb-module deploy-name="springframework-mini-project-dentist-1.0.0-BUILD-SNAPSHOT">
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project-dentist.git
-                                                                
+                                                                        
+        
         
         
         
@@ -23,7 +17,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
-                                                        		
+                                                                		
+        
         
         
         
@@ -31,7 +26,8 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                                                        		
+                                                                		
+        
         
         
         
@@ -39,7 +35,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                                                        		
+                                                                		
+        
         
         
         
@@ -47,7 +44,8 @@
         
         
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-                                                        		
+                                                                		
+        
         
         
         
@@ -55,8 +53,10 @@
         
         
         <property name="java-output-path" value="target/classes"/>
+                
         <property name="context-root" value="springframework-mini-project-dentist"/>
-                                                        	
+                                                                	
+    
     
     
     
@@ -64,7 +64,8 @@
     
     
     </wb-module>
-                            
+                                
+
 
 
 
