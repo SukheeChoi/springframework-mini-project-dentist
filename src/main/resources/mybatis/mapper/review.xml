@@ -42,7 +42,7 @@
 	
 	<insert id="insert" parameterType="review">
 		<selectKey keyProperty="reviewno" resultType="int" order="BEFORE">
-			select SEQ_REVIEWNO.nextval from dual
+			select REVIEWNO_SEQ.nextval from dual
 		</selectKey>
 		INSERT INTO reviews (reviewno, userid, starscore, reviewcontent, lastvisitcount)
 		VALUES (#{reviewno}, #{userid}, #{starscore}, #{reviewcontent}, #{lastvisitcount})

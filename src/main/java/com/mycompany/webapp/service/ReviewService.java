@@ -40,12 +40,12 @@ public class ReviewService {
 	}
 	
 	//리뷰 작성
-	public void writeReview(Review reviews) {
-		reviewDao.insert(reviews);
+	public void writeReview(Review review) {
+		reviewDao.insert(review);
 	}
 	
 	//리뷰 수정
-	public void updateReview(Review reviews) {
-		reviewDao.update(reviews);
+	public void updateReview(Review review) {
+		reviewDao.update(review);
 	}
 }

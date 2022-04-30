@@ -5,7 +5,7 @@
 <mapper namespace="com.mycompany.webapp.dao.mybatis.TreatmentDao">
 	<select id="selectByPatientssn" parameterType="string" resultType="treatment">
 		SELECT treatno, isreviewed, treattype, doctorname
-			, treatcost, treatedate, doctorcomment
+			, treatcost, treatdate, doctorcomment
 			, materialcompany, patientssn
 		FROM treatments
 		WHERE patientssn=#{patientssn}
@@ -13,7 +13,7 @@
 	
 	<select id="selectByTreatType" resultType="treatment">
 		SELECT treatno, isreviewed, treattype, doctorname
-			, treatcost, treatedate, doctorcomment
+			, treatcost, treatdate, doctorcomment
 			, materialcompany, patientssn
 		FROM treatments
 		WHERE patientssn=#{patientssn}
@@ -22,15 +22,16 @@
 	
 	<insert id="insert" parameterType="treatment">
 		<selectKey keyProperty="treatno" resultType="int" order="BEFORE">
-			select SEQ_TREATNO.nextval from dual
+			select TREATNO_SEQ.nextval from dual
 		</selectKey>
-		INSERT INTO treatments
+		INSERT INTO treatments(
 			treatno, isreviewed, treattype, doctorname
-			, treatcost, treatedate, doctorcomment
+			, treatcost, treatdate, doctorcomment
 			, materialcompany, patientssn
+		)
 		VALUES(
 			#{treatno}, #{isreviewed}, #{treattype}, #{doctorname}
-			, #{treatcost}, #{treatedate}, #{doctorcomment}
+			, #{treatcost}, #{treatdate}, #{doctorcomment}
 			, #{materialcompany}, #{patientssn}
 		)
 	</insert>
@@ -38,7 +39,7 @@
 	<update id="update" parameterType="treatment">
 		UPDATE treatments
 		SET isreviewed=#{isreviewed}, treattype=#{treattype}, doctorname=#{doctorname}
-			, treatcost=#{treatcost}, treatedate=#{treatedate}, doctorcomment=#{doctorcomment}
+			, treatcost=#{treatcost}, treatdate=#{treatdate}, doctorcomment=#{doctorcomment}
 			, materialcompany=#{materialcompany}, patientssn=#{patientssn}
 		WHERE treatno=#{treatno}
 	</update>

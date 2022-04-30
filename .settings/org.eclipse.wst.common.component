@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
                             	
+<<<<<<< HEAD
+    
+=======
+>>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project-dentist.git
     
     
     
     
     
-    
+<<<<<<< HEAD
     <wb-module deploy-name="springframework-mini-project-1.0.0-BUILD-SNAPSHOT">
+=======
+    
+    <wb-module deploy-name="springframework-mini-project-dentist-1.0.0-BUILD-SNAPSHOT">
+>>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project-dentist.git
                                                                 
         
         
