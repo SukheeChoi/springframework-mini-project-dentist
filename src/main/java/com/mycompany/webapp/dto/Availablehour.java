@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 public class Availablehour {
-	private Date Availabledate;
-	private String Availabletime;
+	private Date availabledate;
+	private String availabletime;
 }
