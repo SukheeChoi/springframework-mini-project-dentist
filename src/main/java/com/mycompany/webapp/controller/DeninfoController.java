@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -20,7 +21,7 @@ public class DeninfoController {
 	@Resource
 	private DeninfoService deninfoService;
 	
-	@RequestMapping(value="/getdeninfo", produces = "application/json; charset=UTF-8")
+	@PostMapping(value="/getdeninfo", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getDeninfo() {
 		/*

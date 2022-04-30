@@ -1,13 +1,12 @@
 package com.mycompany.webapp.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,9 +25,9 @@ public class ReviewController {
 	@Resource
 	private ReviewService reviewService;
 	
-	@RequestMapping(value="/getReviews", produces = "application/json; charset=UTF-8")
+	@PostMapping(value="/getReviews", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String getReviews(@RequestParam(defaultValue = "1") int pageNo, HttpServletResponse response) {
+	public String getReviews(@RequestParam(defaultValue = "1") int pageNo) {
 		/*
 		 요청은 이런식 => getReviews?pageNo=1
 		 http://localhost:8080/springframework-mini-project-dentist/review/getReviews?pageNo=1

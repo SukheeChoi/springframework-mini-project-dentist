@@ -3,10 +3,10 @@ package com.mycompany.webapp.controller;
 import java.util.Date;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,9 +23,9 @@ public class AvailablehourController {
 	@Resource
 	private AvailablehourService availablehourService;
 	
-	@RequestMapping(value="/getHour", produces = "application/json; charset=UTF-8")
+	@PostMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String getHour(Date date, HttpServletResponse response) {
+	public String getHour(Date date) {
 		/*
 		 요청은 이런식 => getHour?date=2022/05/06
 		 http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=2022/05/06
