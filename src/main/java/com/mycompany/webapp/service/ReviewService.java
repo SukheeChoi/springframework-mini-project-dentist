@@ -28,6 +28,11 @@ public class ReviewService {
 	public int getTotalReviewCountByUserid() {
 		return reviewDao.count();
 	}
+	
+	//페이지네이션을 위한 user의 전체 리뷰 갯수
+	public float getAverageStars() {
+		return reviewDao.averageStars();
+	}
 
 	//전체 리뷰 조회
 	public List<Review> getReviews(Pager pager) {

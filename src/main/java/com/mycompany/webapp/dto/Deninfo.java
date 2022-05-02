@@ -11,4 +11,6 @@ public class Deninfo {
 	private String imagefilename;
 	private String denowner;
 	private String denregistno;
+	private Float denlongitude;
+	private Float denlatitude;
 }

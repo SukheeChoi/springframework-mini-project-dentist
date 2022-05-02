@@ -40,6 +40,10 @@
 		SELECT count(*) FROM reviews WHERE userid = #{userid}
 	</select>
 	
+	<select id="averageStars" resultType="float">
+		SELECT avg(starscore) FROM reviews
+	</select>
+	
 	<insert id="insert" parameterType="review">
 		<selectKey keyProperty="reviewno" resultType="int" order="BEFORE">
 			select REVIEWNO_SEQ.nextval from dual
