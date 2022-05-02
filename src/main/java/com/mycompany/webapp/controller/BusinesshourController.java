@@ -30,7 +30,7 @@ public class BusinesshourController {
 	@PostMapping(value="/getBusinessHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getBusinessHour() {
-		log.info("실행");
+		log.info("제발 푸시하게 해주세요... 제물로 정민이 드림...ㅜ");
 		List<Businesshour> list = businesshourService.getAllBusinesshour();
 		JSONObject outterJsonObject = new JSONObject();
 		for(int i=0; i<list.size(); i++) {
