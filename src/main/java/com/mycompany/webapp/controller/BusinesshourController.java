@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 //@RestController
-@RequestMapping("/businessHour")
+@RequestMapping("/businesshour")
 @Log4j2
 public class BusinesshourController {
 
