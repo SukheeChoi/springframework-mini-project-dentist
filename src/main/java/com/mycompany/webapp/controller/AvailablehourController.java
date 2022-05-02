@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class AvailablehourController {
 	@Resource
 	private AvailablehourService availablehourService;
 	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getHour(Date date) {

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.mycompany.webapp.dao.mybatis.TreatmentDao;
+import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Treatment;
 
 import lombok.extern.log4j.Log4j2;
@@ -17,20 +18,24 @@ public class TreatmentService {
 	@Resource
 	private TreatmentDao treatmentDao;
 	
+	public int getCountByPatientssn(String patientssn) {
+		return treatmentDao.countByPatientssn(patientssn);
+	}
+	
 	//웹 서버에 진료내역 리스트를 전달하기 위한 select. 조건은 주민번호.
-	public List<Treatment> getTreatmentList(String patientssn) {
-		List<Treatment> list = treatmentDao.selectByPatientssn(patientssn);
+	public List<Treatment> getTreatmentList(String patientssn, Pager pager) {
+		List<Treatment> list = treatmentDao.selectByPatientssn(patientssn, pager);
 		return list;
 	}
 	
 	//웹 서버에 유저가 선택한 치료종류로만 조회한 진료이력 전달 위한 select.
-	public List<Treatment> getTreatmentListByTreatType(String patientssn, String treattype) {
-		List<Treatment> list = treatmentDao.selectByTreatType(patientssn, treattype);
+	public List<Treatment> getTreatmentListByTreatType(String patientssn, String treattype, Pager pager) {
+		List<Treatment> list = treatmentDao.selectByTreatType(patientssn, treattype, pager);
 		return list;
 	}
 	
 	//웹 서버에서 유저가 선택한 진료내역 1개를 전달하기 위한 select.
-	public Treatment getTreatment(String treatno) {
+	public Treatment getTreatment(int treatno) {
 		Treatment treatment = treatmentDao.selectBytreatno(treatno);
 		return treatment;
 	}
@@ -64,6 +69,6 @@ public class TreatmentService {
 			return false;			
 		}
 	}
-	
+
 	
 }
