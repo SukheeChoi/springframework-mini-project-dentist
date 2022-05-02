@@ -1,18 +1,15 @@
 package com.mycompany.webapp.controller;
 
-import java.util.Date;
-
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.webapp.dto.Availablehour;
 import com.mycompany.webapp.dto.Businesshour;
-import com.mycompany.webapp.service.AvailablehourService;
 import com.mycompany.webapp.service.BusinesshourService;
 
 import lombok.extern.log4j.Log4j2;
