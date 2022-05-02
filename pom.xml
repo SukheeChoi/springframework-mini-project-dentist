@@ -255,15 +255,6 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
-            <plugin>
-                	<groupId>org.apache.maven.plugins</groupId>
-                	<artifactId>maven-war-plugin</artifactId>
-                	<version>2.4</version>
-                	<configuration>
-                		<warSourceDirectory>src/main/webapp</warSourceDirectory>
-                		<failOnMissingWebXml>false</failOnMissingWebXml>
-                	</configuration>
-                </plugin>
         </plugins>
     </build>
 </project>
