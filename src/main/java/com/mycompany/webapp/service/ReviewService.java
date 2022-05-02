@@ -29,7 +29,7 @@ public class ReviewService {
 		return reviewDao.count();
 	}
 	
-	//페이지네이션을 위한 user의 전체 리뷰 갯수
+	//평균 별점.
 	public float getAverageStars() {
 		return reviewDao.averageStars();
 	}

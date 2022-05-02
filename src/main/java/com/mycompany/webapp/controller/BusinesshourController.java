@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -45,5 +46,19 @@ public class BusinesshourController {
 		log.info(strJson);
 		return strJson;
 	}
-		
+	
+	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String getHour(String businessday) {
+		/*
+		 요청은 이런식 => getHour?date=2022/05/06
+		 http://localhost:8080/springframework-mini-project-dentist/businesshour/getHour?businessday=2022/05/06
+		 응답은 이런식 => {"date", "0000000001111111111100000000000"}
+		*/
+		Businesshour dbdate = businesshourService.selectByBusinessday(businessday);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("businessday", dbdate.getBusinesshour());
+		String json = jsonObject.toString();
+		return json;
+	}
 }
