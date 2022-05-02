@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class Businesshours {
-	private String businessday;
-	private String businesshour;
+public class Period {
+	private Date startdate;
+	private Date enddate;
 }

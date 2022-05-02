@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 문서 유형 선언 , 문서가 어떻게 작성되어야 하는지 알려주는 스키마나 dtd파일이 들어간다.-->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 루트 태그(엘리먼트) -->
+<configuration>
+	<settings>
+   		<setting name="jdbcTypeForNull" value="NULL"/>
+   	</settings>
+   
+	  <typeAliases>
+	      <typeAlias type="com.mycompany.webapp.dto.Attachment" alias="attachment"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Availablehour" alias="availablehour"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Businesshour" alias="businesshour"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Deninfo" alias="deninfo"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Material" alias="material"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Patient" alias="patient"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Reservation" alias="reservation"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Review" alias="review"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Tooth" alias="tooth"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Treatment" alias="treatment"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Pager" alias="pager"/>
+	      <typeAlias type="com.mycompany.webapp.dto.Period" alias="period"/>
+   </typeAliases>
+</configuration> 

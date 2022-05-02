@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.BusinesshourDao">
+	<select id="selectByBusinessday" parameterType="string" resultType="businesshour">
+		SELECT businessday, businesshour FROM businesshours WHERE businessday=#{businessday}
+	</select>
+	
+	<select id="selectAll" resultType="businesshour">
+		SELECT businessday, businesshour FROM businesshours
+	</select>
+	
+	<insert id="insert" parameterType="businesshour">
+		INSERT INTO businesshours (businessday, businesshour)
+		VALUES (#{businessday}, #{businesshour})
+	</insert>
+	
+	<update id="update" parameterType="businesshour">
+		UPDATE businesshours SET businesshour=#{newbusinesshours.businesshour} 
+		WHERE businessday=#{businesshours.businessday} AND businesshour=#{businesshours.businesshour}
+	</update>
+	
+</mapper>

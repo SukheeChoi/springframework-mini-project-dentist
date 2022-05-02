@@ -3,7 +3,7 @@ package com.mycompany.webapp.dto;
 import lombok.Data;
 
 @Data
-public class Attachments {
+public class Attachment {
 	private int treatno;
 	private String bcontenttype;
 	private String boriginalfilename; 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.mybatis.ReservationDao">
+	<select id="selectByUserid" resultType="reservation">
+		SELECT rnum
+			, resno, patientname, patientphone, selecteddate
+			, selectedtime, isfixed, ispending, isdiscount
+			, resdesc, canceldesc, submitdate, patientssn
+			FROM (
+			  SELECT ROWNUM as rnum
+					, resno, patientname, patientphone, selecteddate
+					, selectedtime, isfixed, ispending, isdiscount
+					, resdesc, canceldesc, submitdate, patientssn
+			  FROM (
+			    SELECT resno, patientname, patientphone, selecteddate
+					, selectedtime, isfixed, ispending, isdiscount
+					, resdesc, canceldesc, submitdate, patientssn
+			    FROM reservation
+			    ORDER BY submitdate DESC
+			  )
+			  WHERE rownum &lt;= #{endRowNo}
+			  	AND patientssn=#{patientssn}
+			)
+		WHERE rnum &gt;= #{startRowNo}
+	  		AND patientssn=#{patientssn}
+	</select>
+	
+	<insert id="insert" parameterType="reservation">
+		<selectKey keyProperty="resno" resultType="int" order="BEFORE">
+			select RESNO_SEQ.nextval from dual
+		</selectKey>
+		INSERT INTO reservation
+			(resno, patientname, patientphone, selecteddate
+			, selectedtime, isfixed, ispending, isdiscount
+			, resdesc, canceldesc, submitdate, patientssn)
+		VALUES(
+			#{resno}, #{patientname}, #{patientphone}, #{selecteddate}
+			, #{selectedtime}, #{isfixed}, #{ispending}, #{isdiscount}
+			, #{resdesc}, #{canceldesc}, SYSDATE, #{patientssn}
+		)
+	</insert>
+	
+	<update id="update" parameterType="reservation">
+		UPDATE reservation
+		SET selecteddate=#{selecteddate}, selectedtime=#{selectedtime}
+			, isfixed=#{isfixed}, ispending=#{ispending}
+			, isdiscount=#{isdiscount}, resdesc=#{resdesc}
+		WHERE resno=#{resno}
+	</update>
+</mapper>
+
