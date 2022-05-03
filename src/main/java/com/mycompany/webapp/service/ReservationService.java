@@ -18,8 +18,8 @@ public class ReservationService {
 	@Resource
 	private ReservationDao reservationDao;
 	
-	public List<Reservation> getReservations(String patientssn, Pager pager){
-		return reservationDao.selectByUserid(patientssn, pager);
+	public List<Reservation> getReservations(String patientssn){
+		return reservationDao.selectByPatientssn(patientssn);
 	}
 	
 	public int createReservation(Reservation reservation) {
