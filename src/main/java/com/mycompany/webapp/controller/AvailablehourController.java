@@ -70,15 +70,9 @@ public class AvailablehourController {
 		reservation.setResdesc((String)param.get("reservation"));
 		reservation.setCanceldesc("?");
 		reservation.setPatientssn("960422-2222222");
-		
-		
-	
 		log.info(reservation);
-		
 		availablehourService.update(availablehour);
-		
      	reservationService.createReservation(reservation);
-		
 		return "/reservation/main";
 	}
 }
