@@ -16,7 +16,7 @@ public class Reservation {
 	private boolean isdiscount;
 	private String resdesc;
 	private String canceldesc;
-	private Date submitdate;
+	private String submitdate;
 	private String patientssn;
 	
 }
