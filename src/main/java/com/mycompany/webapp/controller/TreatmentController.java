@@ -1,6 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Resource;
 
@@ -9,10 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Tooth;
 import com.mycompany.webapp.dto.Treatment;
 import com.mycompany.webapp.service.DeninfoService;
@@ -43,15 +44,15 @@ public class TreatmentController {
 		 응답은 이런식 => 
 		*/
 		List<Treatment> treatments;
-		if(treattype.equals("aa")) {
+		if(treattype.equals("CAVITY")) {
 			treattype = "충치 치료";
-		} else if (treattype.equals("ss")) {
+		} else if (treattype.equals("IMPLANT")) {
 			treattype = "임플란트";
-		} else if (treattype.equals("dd")) {
+		} else if (treattype.equals("NEUROTHERAPY")) {
 			treattype = "신경 치료";
-		} else if (treattype.equals("ff")) {
+		} else if (treattype.equals("EXTRACTION")) {
 			treattype = "발치";
-		}  else if (treattype.equals("gg")) {
+		}  else if (treattype.equals("BRACES")) {
 			treattype = "교정";
 		}
 		
@@ -59,6 +60,12 @@ public class TreatmentController {
 			treatments = treatmentService.getTreatmentList(patientssn);
 		} else {
 			treatments = treatmentService.getTreatmentListByTreatType(patientssn, treattype);
+		}
+		SimpleDateFormat smt = new SimpleDateFormat("yyyy. MM. dd (E)", Locale.KOREAN);
+		
+		for(int i = 0; i < treatments.size(); i++) {
+			String d = smt.format(treatments.get(i).getTreatdate());
+			treatments.get(i).setDatestring(d);
 		}
 		
 		JSONObject jsonObject = new JSONObject();
