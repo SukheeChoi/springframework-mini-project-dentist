@@ -6,8 +6,8 @@
 	<select id="selectByPatientssn" parameterType="string" resultType="reservation">
 		SELECT resno, patientname, patientphone, selecteddate
 			, selectedtime, isfixed, ispending, isdiscount
-			, resdesc, canceldesc, submitdate, patientssn
-<!-- 			, resdesc, canceldesc, TO_CHAR(submitdate, 'YYYY-MM-DD HH24:MI:SS') as submitdate, patientssn -->
+			<!-- , resdesc, canceldesc, submitdate, patientssn -->
+ 			, resdesc, canceldesc, TO_CHAR(submitdate, 'YYYY-MM-DD HH24:MI:SS') as submitdate, patientssn
 		FROM reservation
 		WHERE patientssn=#{patientssn}
 	    ORDER BY submitdate DESC

@@ -28,6 +28,7 @@ public class ReservationController {
 	@PostMapping(value="/reservationList", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getReservationList(@RequestParam String patientssn) {
+		log.info("patientssn : " + patientssn);
 		//patientssn을 기준으로 reservation객체 list로 받아옴.
 		JSONObject jsonObject = new JSONObject();
 		List<Reservation> reservationList = reservationService.getReservations(patientssn);
