@@ -1,9 +1,6 @@
 package com.mycompany.webapp.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.annotation.Resource;
 
@@ -20,6 +17,8 @@ import com.mycompany.webapp.service.DeninfoService;
 import com.mycompany.webapp.service.ToothService;
 import com.mycompany.webapp.service.TreatmentService;
 
+
+@CrossOrigin
 @Controller
 @RequestMapping("/treatment")
 public class TreatmentController {
@@ -33,7 +32,6 @@ public class TreatmentController {
 	@Resource
 	private DeninfoService deninfoService;
 	////페이저 추가하기 전체 다 xml부터
-	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/gettreatmentByssn", produces = "application/json; charset=UTF-8")
 	@ResponseBody
