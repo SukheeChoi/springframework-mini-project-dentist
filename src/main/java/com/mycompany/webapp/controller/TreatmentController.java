@@ -61,13 +61,7 @@ public class TreatmentController {
 		} else {
 			treatments = treatmentService.getTreatmentListByTreatType(patientssn, treattype);
 		}
-		SimpleDateFormat smt = new SimpleDateFormat("yyyy. MM. dd (E)", Locale.KOREAN);
-		
-		for(int i = 0; i < treatments.size(); i++) {
-			String d = smt.format(treatments.get(i).getTreatdate());
-			treatments.get(i).setDatestring(d);
-		}
-		
+
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("denname", deninfoService.selectDeninfo().getDenname());
 		jsonObject.put("treatment", treatments);
