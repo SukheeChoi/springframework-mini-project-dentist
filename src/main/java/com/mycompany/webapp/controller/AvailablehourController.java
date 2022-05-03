@@ -1,13 +1,16 @@
 package com.mycompany.webapp.controller;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Availablehour;
@@ -37,4 +40,18 @@ public class AvailablehourController {
 		String json = jsonObject.toString();
 		return json;
 	}
+	
+	
+	@PostMapping(value="/setHour", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String availableUpdate(Date availabledate,@RequestParam Map<String,Object> param) {
+		Availablehour availablehour = new Availablehour();
+		availablehour.setAvailabledate(availabledate);
+		availablehour.setAvailabletime((String)param.get("availabletime"));
+		log.info(param.get("name"));
+		availablehourService.update(availablehour);
+		return "/reservation/main";
+	}
+	
+	
 }
