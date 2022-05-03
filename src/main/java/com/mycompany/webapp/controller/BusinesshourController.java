@@ -46,7 +46,7 @@ public class BusinesshourController {
 		log.info(strJson);
 		return strJson;
 	}
-	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getHour(String businessday) {
