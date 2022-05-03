@@ -6,13 +6,10 @@ import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-=======
-import org.springframework.web.bind.annotation.GetMapping;
->>>>>>> branch 'master' of https://github.com/SukheeChoi/springframework-mini-project-dentist.git
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
