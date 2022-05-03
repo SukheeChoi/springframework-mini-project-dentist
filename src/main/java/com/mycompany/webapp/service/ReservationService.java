@@ -33,4 +33,6 @@ public class ReservationService {
 		log.info("수정된 예약번호: " + reservation.getResno());
 		return updatedRows;
 	}
+
+	
 }

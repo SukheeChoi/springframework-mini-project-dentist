@@ -1,20 +1,25 @@
 package com.mycompany.webapp.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Availablehour;
+import com.mycompany.webapp.dto.Reservation;
 import com.mycompany.webapp.service.AvailablehourService;
+import com.mycompany.webapp.service.ReservationService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -25,7 +30,8 @@ public class AvailablehourController {
 	
 	@Resource
 	private AvailablehourService availablehourService;
-	
+	@Resource
+	private ReservationService reservationService;
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
@@ -40,5 +46,39 @@ public class AvailablehourController {
 		jsonObject.put("date", dbdate.getAvailabletime());
 		String json = jsonObject.toString();
 		return json;
+	}
+	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/setHour", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String availableUpdate(Date availabledate,@RequestParam Map<String,Object> param) {
+		
+
+		
+		Availablehour availablehour = new Availablehour();
+		Reservation reservation = new Reservation();
+		availablehour.setAvailabledate(availabledate);
+		availablehour.setAvailabletime((String)param.get("availabletime"));
+		
+		reservation.setPatientname((String)param.get("name"));
+		reservation.setPatientphone((String)param.get("phone"));
+		reservation.setSelecteddate(availabledate);
+		reservation.setSelectedtime((String)param.get("tformatDate"));
+		reservation.setIsfixed(false);
+		reservation.setIspending(true);
+		reservation.setIsdiscount(true);
+		reservation.setResdesc((String)param.get("reservation"));
+		reservation.setCanceldesc("?");
+		reservation.setPatientssn("960422-2222222");
+		
+		
+	
+		log.info(reservation);
+		
+		availablehourService.update(availablehour);
+		
+     	reservationService.createReservation(reservation);
+		
+		return "/reservation/main";
 	}
 }
