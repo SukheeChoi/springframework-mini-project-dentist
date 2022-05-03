@@ -11,9 +11,8 @@ public class Treatment {
 	private String treattype;
 	private String doctorname;
 	private int treatcost;
-	private Date treatdate;
+	private String treatdate;
 	private String doctorcomment;
 	private String materialcompany;
 	private String patientssn;
-	private String datestring;
 }
