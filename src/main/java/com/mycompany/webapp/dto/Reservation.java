@@ -10,7 +10,7 @@ public class Reservation {
 	private String patientname;
 	private String patientphone;
 	private Date selecteddate;
-	private String selectedtime; // 희재코멘트: DB칼럼엔 Date타입이던데? 추후 확인 필요
+	private	String selectedtime; // 희재코멘트: DB칼럼엔 Date타입이던데? 추후 확인 필요
 	private boolean isfixed;
 	private boolean ispending;
 	private boolean isdiscount;
