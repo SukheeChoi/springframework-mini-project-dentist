@@ -23,14 +23,14 @@ public class TreatmentService {
 	}
 	
 	//웹 서버에 진료내역 리스트를 전달하기 위한 select. 조건은 주민번호.
-	public List<Treatment> getTreatmentList(String patientssn, Pager pager) {
-		List<Treatment> list = treatmentDao.selectByPatientssn(patientssn, pager);
+	public List<Treatment> getTreatmentList(String patientssn) {
+		List<Treatment> list = treatmentDao.selectByPatientssn(patientssn);
 		return list;
 	}
 	
 	//웹 서버에 유저가 선택한 치료종류로만 조회한 진료이력 전달 위한 select.
-	public List<Treatment> getTreatmentListByTreatType(String patientssn, String treattype, Pager pager) {
-		List<Treatment> list = treatmentDao.selectByTreatType(patientssn, treattype, pager);
+	public List<Treatment> getTreatmentListByTreatType(String patientssn, String treattype) {
+		List<Treatment> list = treatmentDao.selectByTreatType(patientssn, treattype);
 		return list;
 	}
 	

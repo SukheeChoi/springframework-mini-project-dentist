@@ -36,16 +36,31 @@ public class TreatmentController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/gettreatmentByssn", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String gettreatmentByssn(@RequestParam(defaultValue = "1") int pageNo, String patientssn) {
+	public String gettreatmentByssn(String patientssn, String treattype) {
 		/*
 		 요청은 이런식 =>
-		 http://localhost:8080/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=960422-2222222&pageNo=1
+		 http://localhost:8080/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=960422-2222222&treattype="임플란트"
 		 응답은 이런식 => 
 		*/
-		int totalTreatNum = treatmentService.getCountByPatientssn(patientssn);
-		Pager pager = new Pager(5, 5, totalTreatNum, pageNo);
+		List<Treatment> treatments;
+		if(treattype.equals("aa")) {
+			treattype = "충치 치료";
+		} else if (treattype.equals("ss")) {
+			treattype = "임플란트";
+		} else if (treattype.equals("dd")) {
+			treattype = "신경 치료";
+		} else if (treattype.equals("ff")) {
+			treattype = "발치";
+		}  else if (treattype.equals("gg")) {
+			treattype = "교정";
+		}
 		
-		List<Treatment> treatments = treatmentService.getTreatmentList(patientssn, pager);
+		if(treattype.equals("ALL")) {
+			treatments = treatmentService.getTreatmentList(patientssn);
+		} else {
+			treatments = treatmentService.getTreatmentListByTreatType(patientssn, treattype);
+		}
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("denname", deninfoService.selectDeninfo().getDenname());
 		jsonObject.put("treatment", treatments);
