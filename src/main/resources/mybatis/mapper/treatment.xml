@@ -3,21 +3,36 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.TreatmentDao">
-	<select id="selectByPatientssn" parameterType="string" resultType="treatment">
-		SELECT treatno, isreviewed, treattype, doctorname
-			, treatcost, treatdate, doctorcomment
-			, materialcompany, patientssn
+	<select id="countByPatientssn" parameterType="string" resultType="int">
+		SELECT COUNT(*)
 		FROM treatments
 		WHERE patientssn=#{patientssn}
 	</select>
 	
+	<select id="selectByPatientssn" resultType="treatment">
+		    SELECT treatno, isreviewed, treattype, doctorname
+					, treatcost, treatdate, doctorcomment
+					, materialcompany, patientssn
+				FROM treatments
+				WHERE patientssn=#{patientssn}
+
+	</select>
+	
 	<select id="selectByTreatType" resultType="treatment">
+		    SELECT treatno, isreviewed, treattype, doctorname
+					, treatcost, treatdate, doctorcomment
+					, materialcompany, patientssn
+				FROM treatments
+				WHERE patientssn=#{patientssn} AND treattype=#{treattype}
+
+	</select>
+	
+	<select id="selectBytreatno" parameterType="int" resultType="treatment">
 		SELECT treatno, isreviewed, treattype, doctorname
 			, treatcost, treatdate, doctorcomment
 			, materialcompany, patientssn
 		FROM treatments
-		WHERE patientssn=#{patientssn}
-			AND treattype=#{treattype}
+		WHERE treatno=#{treatno}
 	</select>
 	
 	<insert id="insert" parameterType="treatment">

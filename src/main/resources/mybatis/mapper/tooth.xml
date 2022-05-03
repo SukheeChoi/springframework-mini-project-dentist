@@ -3,8 +3,8 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.ToothDao">
-	<select id="selectByTreatno" parameterType="string" resultType="tooth">
-		SELECT treatno, toothno FROM materials WHERE treatno = #{treatno}
+	<select id="selectByTreatno" parameterType="int" resultType="tooth">
+		SELECT treatno, toothno FROM tooth WHERE treatno = #{treatno}
 	</select>
 	
 	<insert id="insert" parameterType="tooth">

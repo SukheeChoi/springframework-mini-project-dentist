@@ -15,4 +15,5 @@ public class Treatment {
 	private String doctorcomment;
 	private String materialcompany;
 	private String patientssn;
+	private String datestring;
 }
