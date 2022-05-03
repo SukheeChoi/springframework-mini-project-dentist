@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Tooth;
 import com.mycompany.webapp.dto.Treatment;
+import com.mycompany.webapp.service.DeninfoService;
 import com.mycompany.webapp.service.ToothService;
 import com.mycompany.webapp.service.TreatmentService;
 
@@ -27,6 +28,9 @@ public class TreatmentController {
 	
 	@Resource
 	private ToothService toothService;
+	
+	@Resource
+	private DeninfoService deninfoService;
 	////페이저 추가하기 전체 다 xml부터
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
@@ -43,6 +47,7 @@ public class TreatmentController {
 		
 		List<Treatment> treatments = treatmentService.getTreatmentList(patientssn, pager);
 		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("denname", deninfoService.selectDeninfo().getDenname());
 		jsonObject.put("treatment", treatments);
 		String json = jsonObject.toString();
 		return json;

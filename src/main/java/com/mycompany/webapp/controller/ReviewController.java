@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +30,7 @@ public class ReviewController {
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/getReviews", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String getReviews(@RequestParam(defaultValue = "1") int pageNo
-			, Model model) {
+	public String getReviews(@RequestParam(defaultValue = "1") int pageNo) {
 		/*
 		 요청은 이런식 => getReviews?pageNo=1
 		 http://localhost:8082/springframework-mini-project-dentist/review/getReviews?pageNo=1
@@ -50,7 +49,6 @@ public class ReviewController {
 		int totalReviewNum = reviewService.getTotalReviewCount();
 		
 		Pager pager = new Pager(10, 5, totalReviewNum, pageNo);
-		model.addAttribute("pager", pager);
 		//페이지네이션으로 선택된 리뷰 목록
 		List<Review> list = reviewService.getReviews(pager);
 		
@@ -60,6 +58,26 @@ public class ReviewController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("averageStars", averageStars);
 		jsonObject.put("totalReviewNum", totalReviewNum);
+		
+		JSONObject jsonObjectPager = new JSONObject();
+		jsonObjectPager.put("totalRows", pager.getTotalRows());
+		jsonObjectPager.put("totalPageNo", pager.getTotalPageNo());
+		jsonObjectPager.put("totalGroupNo", pager.getTotalGroupNo());
+		jsonObjectPager.put("startPageNo", pager.getStartPageNo());
+		jsonObjectPager.put("endPageNo", pager.getEndPageNo());
+		jsonObjectPager.put("pageNo", pager.getPageNo());
+		jsonObjectPager.put("pagesPerGroup", pager.getPagesPerGroup());
+		jsonObjectPager.put("groupNo", pager.getGroupNo());
+		jsonObjectPager.put("rowsPerPage", pager.getRowsPerPage());
+		jsonObjectPager.put("startRowNo", pager.getStartRowNo());
+		jsonObjectPager.put("startRowIndex", pager.getStartRowIndex());
+		jsonObjectPager.put("endRowNo", pager.getEndRowNo());
+		jsonObjectPager.put("endRowIndex", pager.getEndRowIndex());
+		
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.put(jsonObjectPager);
+		jsonObject.put("pager", jsonArray);
+		
 		jsonObject.put("reviewList", list);
 		String json = jsonObject.toString();
 		log.info(json);
