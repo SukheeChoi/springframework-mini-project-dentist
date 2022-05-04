@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Attachment;
@@ -40,7 +41,7 @@ public class TreatmentController {
 	////페이저 추가하기 전체 다 xml부터
 	@PostMapping(value="/getTreatmentByssn", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public String getTreatmentByssn(String patientssn, String treattype) {
+	public String getTreatmentByssn(String patientssn, @RequestParam(defaultValue = "ALL") String treattype) {
 		/*
 		 요청은 이런식 =>
 		 http://localhost:8081/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=960422-2222222&treattype="임플란트"
