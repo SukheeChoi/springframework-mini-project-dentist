@@ -13,6 +13,8 @@ public interface ReservationDao {
 	public List<Reservation> selectByPatientssn(String patientssn);
 	public List<Reservation> selectByPatientssnWithPager(@Param("patientssn") String patientssn, @Param("pager") Pager pager);
 	public int insert(Reservation reservation);
-	//예약 수정, 취소, 확정.
+	//예약 수정 불가능.
 	public int update(Reservation reservation);
+	//예약 취소만 가능.
+	public int updateForCancel(int resno);
 }

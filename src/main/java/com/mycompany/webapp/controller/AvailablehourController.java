@@ -1,7 +1,7 @@
 package com.mycompany.webapp.controller;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
@@ -60,7 +60,11 @@ public class AvailablehourController {
 		
 		reservation.setPatientname((String)param.get("name"));
 		reservation.setPatientphone((String)param.get("phone"));
-		reservation.setSelecteddate(availabledate);
+		//변경 시작~
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		reservation.setSelecteddate(dateFormat.format(availabledate));
+//		reservation.setSelecteddate(availabledate);//원래 정민이 코드!!!!!!!!
+		//변경 끝~
 		reservation.setSelectedtime((String)param.get("tformatDate"));
 		reservation.setIsfixed(false);
 		reservation.setIspending(true);
