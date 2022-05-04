@@ -20,4 +20,5 @@
 		UPDATE availablehours SET availabletime=#{availabletime} 
 		WHERE availabledate=#{availabledate}
 	</update>
+	
 </mapper>

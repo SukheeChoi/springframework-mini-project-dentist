@@ -53,8 +53,6 @@ public class AvailablehourController {
 	@ResponseBody
 	public String availableUpdate(Date availabledate,@RequestParam Map<String,Object> param) {
 		
-
-		
 		Availablehour availablehour = new Availablehour();
 		Reservation reservation = new Reservation();
 		availablehour.setAvailabledate(availabledate);
@@ -75,4 +73,5 @@ public class AvailablehourController {
      	reservationService.createReservation(reservation);
 		return "/reservation/main";
 	}
+	
 }
