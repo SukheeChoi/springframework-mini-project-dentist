@@ -4,7 +4,7 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.ReservationDao">
 	<select id="selectByPatientssn" parameterType="string" resultType="reservation">
-		SELECT resno, patientname, patientphone, selecteddate
+		SELECT resno, patientname, patientphone, TO_CHAR(selecteddate, 'YYYY-MM-DD') as selecteddate
 			, selectedtime, isfixed, ispending, isdiscount
 			<!-- , resdesc, canceldesc, submitdate, patientssn -->
  			, resdesc, canceldesc, TO_CHAR(submitdate, 'YYYY-MM-DD HH24:MI:SS') as submitdate, patientssn
@@ -50,12 +50,18 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="reservation">
+	<!-- 예약변경이 없고, 취소만 가능한 경우. -->
+	<update id="updateForCancel" parameterType="int">
 		UPDATE reservation
+		SET isfixed=0, ispending=0
+		WHERE resno=#{resno}
+	<!-- 예약변경이 가능한 경우. -->
+<!-- 	<update id="update" parameterType="reservation"> -->
+<!-- 		UPDATE reservation
 		SET selecteddate=#{selecteddate}, selectedtime=#{selectedtime}
 			, isfixed=#{isfixed}, ispending=#{ispending}
 			, isdiscount=#{isdiscount}, resdesc=#{resdesc}
-		WHERE resno=#{resno}
+		WHERE resno=#{resno} -->
 	</update>
 </mapper>
 
