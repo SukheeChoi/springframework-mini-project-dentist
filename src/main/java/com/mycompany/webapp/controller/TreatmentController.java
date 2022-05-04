@@ -23,7 +23,7 @@ import com.mycompany.webapp.service.TreatmentService;
 import lombok.extern.log4j.Log4j2;
 
 
-@CrossOrigin(origins="*", allowedHeaders = "*")
+
 @Controller
 @RequestMapping("/treatment")
 @Log4j2
@@ -73,9 +73,9 @@ public class TreatmentController {
 		return json;
 	}
 	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/getTreatmentBytreatno", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	@CrossOrigin
 	public String getTreatmentBytreatno(int treatno) {
 		/*
 		 요청은 이런식 =>
