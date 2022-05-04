@@ -17,7 +17,7 @@
 	</insert>
 	
 	<update id="update" parameterType="availablehour">
-		UPDATE availablehours SET availabledate=#{newavailablehours.availabledate}, availabletime=#{newavailablehours.availabletime} 
-		WHERE availabledate=#{availablehours.availabledate} AND availabletime=#{availablehours.availabletime}
+		UPDATE availablehours SET availabletime=#{availabletime} 
+		WHERE availabledate=#{availabledate}
 	</update>
 </mapper>

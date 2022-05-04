@@ -31,6 +31,11 @@ public class AvailablehourService {
 	public void insert(Availablehour availablehour) {
 		availablehourDao.insert(availablehour);
 	}
+	public int update(Availablehour availablehour) {
+		int updateRows = availablehourDao.update(availablehour);
+		return updateRows;
+		
+	}
 	
 	
 	

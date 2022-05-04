@@ -3,7 +3,16 @@
                  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.ReservationDao">
-	<select id="selectByUserid" resultType="reservation">
+	<select id="selectByPatientssn" parameterType="string" resultType="reservation">
+		SELECT resno, patientname, patientphone, selecteddate
+			, selectedtime, isfixed, ispending, isdiscount
+			<!-- , resdesc, canceldesc, submitdate, patientssn -->
+ 			, resdesc, canceldesc, TO_CHAR(submitdate, 'YYYY-MM-DD HH24:MI:SS') as submitdate, patientssn
+		FROM reservation
+		WHERE patientssn=#{patientssn}
+	    ORDER BY submitdate DESC
+	</select>
+	<select id="selectByPatientssnWithPager" resultType="reservation">
 		SELECT rnum
 			, resno, patientname, patientphone, selecteddate
 			, selectedtime, isfixed, ispending, isdiscount
@@ -19,12 +28,11 @@
 					, resdesc, canceldesc, submitdate, patientssn
 			    FROM reservation
 			    ORDER BY submitdate DESC
+			    WHERE patientssn=#{patientssn}
 			  )
-			  WHERE rownum &lt;= #{endRowNo}
-			  	AND patientssn=#{patientssn}
+			  WHERE rownum &lt;= #{pager.endRowNo}
 			)
-		WHERE rnum &gt;= #{startRowNo}
-	  		AND patientssn=#{patientssn}
+		WHERE rnum &gt;= #{pager.startRowNo}
 	</select>
 	
 	<insert id="insert" parameterType="reservation">
