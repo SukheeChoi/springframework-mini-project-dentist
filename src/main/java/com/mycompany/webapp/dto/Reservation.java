@@ -19,5 +19,11 @@ public class Reservation {
 	private String submitdate;
 //	private Date submitdate;
 	private String patientssn;
+	private String dendomain;
+	
+	public Reservation() {
+		//DB에서 동적으로 가져와야 함.(IP주소는 고유하지만 변경 가능하기 때문.)
+		this.dendomain = "8082";
+	}
 	
 }
