@@ -11,7 +11,7 @@
 	
 	<select id="selectByPatientssn" resultType="treatment">
 		    SELECT treatno, isreviewed, treattype, doctorname
-					, treatcost, TO_CHAR(treatdate, 'YYYY. MM. DD. (DY)') as treatdate, doctorcomment
+					, treatcost, TO_CHAR(treatdate, 'YYYY-MM-DD') as treatdate, doctorcomment
 					, materialcompany, patientssn
 				FROM treatments
 				WHERE patientssn=#{patientssn}
@@ -20,7 +20,7 @@
 	
 	<select id="selectByTreatType" resultType="treatment">
 		    SELECT treatno, isreviewed, treattype, doctorname
-					, treatcost, TO_CHAR(treatdate, 'YYYY. MM. DD. (DY)') as treatdate, doctorcomment
+					, treatcost, TO_CHAR(treatdate, 'YYYY-MM-DD') as treatdate, doctorcomment
 					, materialcompany, patientssn
 				FROM treatments
 				WHERE patientssn=#{patientssn} AND treattype=#{treattype}

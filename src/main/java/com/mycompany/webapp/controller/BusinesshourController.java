@@ -19,7 +19,6 @@ import com.mycompany.webapp.service.BusinesshourService;
 import lombok.extern.log4j.Log4j2;
 
 @Controller
-//@RestController
 @RequestMapping("/businesshour")
 @Log4j2
 public class BusinesshourController {
@@ -46,7 +45,7 @@ public class BusinesshourController {
 		log.info(strJson);
 		return strJson;
 	}
-	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String getHour(String businessday) {
