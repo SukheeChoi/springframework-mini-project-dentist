@@ -37,4 +37,15 @@ public class ReservationController {
 		log.info(reservationList);
 		return jsonObject.toString();
 	}
+	//예약 변경을 처리.
+	@CrossOrigin(origins="*", allowedHeaders = "*")
+	@PostMapping(value="/cancelReservation", produces = "application/json; charset=UTF-8")
+	@ResponseBody
+	public String cancelReservation(@RequestParam int resno) {
+		boolean cancelResult = false;
+		cancelResult = reservationService.cancelReservation(resno);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("cancelResult", cancelResult);
+		return jsonObject.toString();
+	}
 }

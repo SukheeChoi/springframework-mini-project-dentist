@@ -27,11 +27,21 @@ public class ReservationService {
 		log.info("생성된 예약번호: " + reservation.getResno());
 		return createdRows;
 	}
-	
+	//예약변경 불가능!
 	public int updateReservation(Reservation reservation) {
 		int updatedRows = reservationDao.update(reservation);
 		log.info("수정된 예약번호: " + reservation.getResno());
 		return updatedRows;
+	}
+	//예약취소만 가능함!
+	public boolean cancelReservation(int resno) {
+		boolean result = false;
+		int updatedRows = reservationDao.updateForCancel(resno);
+		if(updatedRows == 1) {
+			result = true;
+		}
+		log.info("취소된 예약번호: " + resno);
+		return result;
 	}
 
 	
