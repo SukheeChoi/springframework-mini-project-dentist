@@ -4,6 +4,10 @@ import javax.annotation.Resource;
 
 import com.mycompany.webapp.service.DeninfoService;
 
+import javax.annotation.Resource;
+
+import com.mycompany.webapp.service.DeninfoService;
+
 import lombok.Data;
 
 @Data
