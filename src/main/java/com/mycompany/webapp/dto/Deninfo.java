@@ -13,4 +13,5 @@ public class Deninfo {
 	private String denregistno;
 	private Float denlongitude;
 	private Float denlatitude;
+	private String dendomain;
 }
