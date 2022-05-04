@@ -1,9 +1,6 @@
 package com.mycompany.webapp.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import javax.annotation.Resource;
 
@@ -14,33 +11,39 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mycompany.webapp.dto.Attachment;
 import com.mycompany.webapp.dto.Tooth;
 import com.mycompany.webapp.dto.Treatment;
+import com.mycompany.webapp.service.AttachmentService;
 import com.mycompany.webapp.service.DeninfoService;
 import com.mycompany.webapp.service.ToothService;
 import com.mycompany.webapp.service.TreatmentService;
 
+import lombok.extern.log4j.Log4j2;
+
+
+@CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/treatment")
+@Log4j2
 public class TreatmentController {
-
+	// *** DENTIST서버쪽 컨트롤러입니다 ***
 	@Resource
 	private TreatmentService treatmentService;
-	
 	@Resource
 	private ToothService toothService;
-	
+	@Resource
+	private AttachmentService attachmentService;
 	@Resource
 	private DeninfoService deninfoService;
-	////페이저 추가하기 전체 다 xml부터
 	
-	@CrossOrigin(origins="*", allowedHeaders = "*")
-	@PostMapping(value="/gettreatmentByssn", produces = "application/json; charset=UTF-8")
+	////페이저 추가하기 전체 다 xml부터
+	@PostMapping(value="/getTreatmentByssn", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public String gettreatmentByssn(String patientssn, String treattype) {
+	public String getTreatmentByssn(String patientssn, String treattype) {
 		/*
 		 요청은 이런식 =>
-		 http://localhost:8080/springframework-mini-project-dentist/treatment/gettreatmentByssn?patientssn=960422-2222222&treattype="임플란트"
+		 http://localhost:8081/springframework-mini-project-dentist/treatment/getTreatmentByssn?patientssn=960422-2222222&treattype="임플란트"
 		 응답은 이런식 => 
 		*/
 		List<Treatment> treatments;
@@ -69,17 +72,20 @@ public class TreatmentController {
 		return json;
 	}
 	
-	@CrossOrigin(origins="*", allowedHeaders = "*")
-	@PostMapping(value="/gettreatmentBytreatno", produces = "application/json; charset=UTF-8")
+	@PostMapping(value="/getTreatmentBytreatno", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	public String gettreatmentBytreatno(int treatno) {
+	@CrossOrigin
+	public String getTreatmentBytreatno(int treatno) {
 		/*
 		 요청은 이런식 =>
-		 http://localhost:8080/springframework-mini-project-dentist/treatment/gettreatmentBytreatno?treatno=11
+		 http://localhost:8082/springframework-mini-project-dentist/treatment/getTreatmentBytreatno?treatno=11
 		 응답은 이런식 => 
 		*/
 		Treatment treatment = treatmentService.getTreatment(treatno);
-		List<Tooth> tooth = toothService.getTooth(treatno);
+		List<Tooth> teeth = toothService.getTooth(treatno);
+		List<Attachment> attachmentList = attachmentService.getAttachmentList(treatno);
+		log.info("attachmentList: " + attachmentList);
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("treatno", treatment.getTreatno());
 		jsonObject.put("isreviewed", treatment.isIsreviewed());
@@ -90,8 +96,11 @@ public class TreatmentController {
 		jsonObject.put("doctorcomment", treatment.getDoctorcomment());
 		jsonObject.put("materialcompany", treatment.getMaterialcompany());
 		jsonObject.put("patientssn", treatment.getPatientssn());
-		jsonObject.put("tooth", tooth);
+		jsonObject.put("teeth", teeth);
+		jsonObject.put("attachmentList", attachmentList);
+		
 		String json = jsonObject.toString();
+		
 		return json;
 	}
 }
