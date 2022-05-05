@@ -1,5 +1,6 @@
 package com.mycompany.webapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -75,7 +76,6 @@ public class TreatmentController {
 	
 	@PostMapping(value="/getTreatmentBytreatno", produces="application/json; charset=UTF-8")
 	@ResponseBody
-	@CrossOrigin
 	public String getTreatmentBytreatno(int treatno) {
 		/*
 		 요청은 이런식 =>
@@ -100,6 +100,21 @@ public class TreatmentController {
 		jsonObject.put("teeth", teeth);
 		jsonObject.put("attachmentList", attachmentList);
 		
+		String json = jsonObject.toString();
+		
+		return json;
+	}
+	
+	@PostMapping(value="/easteregg", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String getEasteregg(@RequestParam String patientssn) {
+		List<Treatment> list = treatmentService.getTreatmentList(patientssn);
+		
+		List<Tooth> toothno = toothService.getToothbyPatientssn(patientssn);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("list", list);
+		jsonObject.put("toothno", toothno);
 		String json = jsonObject.toString();
 		
 		return json;

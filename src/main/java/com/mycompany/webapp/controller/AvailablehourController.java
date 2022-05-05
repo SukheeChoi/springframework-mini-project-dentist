@@ -52,9 +52,6 @@ public class AvailablehourController {
 	@PostMapping(value="/setHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String availableUpdate(Date availabledate,@RequestParam Map<String,Object> param) {
-		
-
-		
 		Availablehour availablehour = new Availablehour();
 		Reservation reservation = new Reservation();
 		availablehour.setAvailabledate(availabledate);
@@ -74,9 +71,7 @@ public class AvailablehourController {
 		reservation.setResdesc((String)param.get("reservation"));
 		reservation.setCanceldesc("?");
 		reservation.setPatientssn("960422-2222222");
-		
-		
-	
+
 		log.info(reservation);
 		
 		availablehourService.update(availablehour);
