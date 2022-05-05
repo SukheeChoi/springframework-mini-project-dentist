@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.dto.Review;
+import com.mycompany.webapp.dto.Treatment;
 import com.mycompany.webapp.service.ReviewService;
+import com.mycompany.webapp.service.TreatmentService;
 
 import lombok.extern.log4j.Log4j2;
 
+@CrossOrigin
 @Controller
 @RequestMapping("/review")
 @Log4j2
@@ -26,9 +29,12 @@ public class ReviewController {
 	
 	@Resource
 	private ReviewService reviewService;
+	@Resource
+	private TreatmentService treatmentService;
+	
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
-	@PostMapping(value="/getReviews", produces = "application/json; charset=UTF-8")
+	@PostMapping(value="/getReviews", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String getReviews(@RequestParam(defaultValue = "1") int pageNo) {
 		/*
@@ -84,4 +90,32 @@ public class ReviewController {
 		return json;
 	}
 	
+	@PostMapping(value="/postReview", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public String postReview(@RequestParam String treatno, Review review) {
+		log.info("treatno: " + treatno);
+		// lastvisitcount 먼저 계산한 뒤 값 set하기
+		String reviewWriter = review.getUserid();
+		int lastvisitcount = reviewService.getTotalReviewCountByUserid(reviewWriter);
+		review.setLastvisitcount(lastvisitcount + 1);
+		
+		// 리뷰 저장
+		log.info("review: " + review);
+		int result = reviewService.writeReview(review);
+		// 리뷰를 작성한 treatment 대상의 isReviewed 값 업데이트
+		Treatment treatment = treatmentService.getTreatment(Integer.parseInt(treatno));
+		int modified = treatmentService.modifyTreatmentAsReviewed(treatment);
+		log.info("treatment: " + treatment);
+		log.info("modified: " + modified);
+		
+		JSONObject jsonObject = new JSONObject();
+		if (result != 1) {
+			jsonObject.put("error", "저런! 뭔가 문제가 생겼어요.");
+			String json = jsonObject.toString();
+			return json;
+		}
+		jsonObject.put("success", "리뷰를 성공적으로 작성하셨습니다~");
+		String json = jsonObject.toString();
+		return json;
+	}
 }
