@@ -7,6 +7,12 @@
 		SELECT treatno, toothno FROM tooth WHERE treatno = #{treatno}
 	</select>
 	
+	<select id="selectByPatientssn" parameterType="string" resultType="tooth">
+		select a.treatno, a.toothno
+		from tooth a, treatments b
+		where a.treatno = b.treatno and b.patientssn = #{patientssn}
+	</select>
+	
 	<insert id="insert" parameterType="tooth">
 		INSERT INTO tooth (treatno, toothno)
 		VALUES (#{treatno}, #{toothno})
