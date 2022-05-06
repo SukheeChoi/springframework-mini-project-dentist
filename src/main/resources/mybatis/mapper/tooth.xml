@@ -8,9 +8,11 @@
 	</select>
 	
 	<select id="selectByPatientssn" parameterType="string" resultType="tooth">
-		select a.treatno, a.toothno
-		from tooth a, treatments b
-		where a.treatno = b.treatno and b.patientssn = #{patientssn}
+	select count(a.toothno) as treatno, a.toothno
+	from tooth a, treatments b
+	where a.treatno = b.treatno and b.patientssn = #{patientssn}
+	GROUP by a.toothno
+	order by treatno desc 
 	</select>
 	
 	<insert id="insert" parameterType="tooth">
