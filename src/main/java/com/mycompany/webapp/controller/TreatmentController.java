@@ -1,6 +1,5 @@
 package com.mycompany.webapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -117,6 +116,7 @@ public class TreatmentController {
 		
 		return json;
 	}
+
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/easteregg", produces="application/json; charset=UTF-8")
 	@ResponseBody
