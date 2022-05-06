@@ -71,8 +71,9 @@ public class AvailablehourController {
 		reservation.setIsdiscount(true);
 		reservation.setResdesc((String)param.get("reservation"));
 		reservation.setCanceldesc("?");
-		reservation.setPatientssn("960422-2222222");
+		reservation.setPatientssn((String)param.get("patientssn"));
 		log.info("availableUpdate 의 reservation" + reservation);
+
 
 		
 		availablehourService.update(availablehour);
