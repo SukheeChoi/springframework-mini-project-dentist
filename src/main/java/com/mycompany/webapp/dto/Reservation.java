@@ -17,7 +17,7 @@ public class Reservation {
 	private String resdesc;
 	private String canceldesc;
 	private String submitdate;
-//	private Date submitdate;
+
 	private String patientssn;
 	private String dendomain;
 	private String denname;
