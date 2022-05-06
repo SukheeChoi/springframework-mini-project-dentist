@@ -4,7 +4,8 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.DeninfoDao">
 	<select id="select" resultType="deninfo">
-		SELECT denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno, denlongitude, denlatitude FROM deninfo
+		SELECT denname, dencontact, denaddress, imagecontenttype, imagefilename, denowner, denregistno, denlongitude, denlatitude, dendomain
+		FROM deninfo
 	</select>
 	
 	<insert id="insert" parameterType="deninfo">

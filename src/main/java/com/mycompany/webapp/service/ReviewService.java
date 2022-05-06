@@ -25,8 +25,8 @@ public class ReviewService {
 	}
 	
 	//페이지네이션을 위한 user의 전체 리뷰 갯수
-	public int getTotalReviewCountByUserid() {
-		return reviewDao.count();
+	public int getTotalReviewCountByUserid(String userid) {
+		return reviewDao.countByUserid(userid);
 	}
 	
 	//평균 별점.
@@ -45,8 +45,8 @@ public class ReviewService {
 	}
 	
 	//리뷰 작성
-	public void writeReview(Review review) {
-		reviewDao.insert(review);
+	public int writeReview(Review review) {
+		return reviewDao.insert(review);
 	}
 	
 	//리뷰 수정

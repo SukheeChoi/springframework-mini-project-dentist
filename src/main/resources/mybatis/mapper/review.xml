@@ -18,11 +18,11 @@
 	</select>
 
 	<select id="selectByUserid" resultType="review">
-		SELECT rnum, reviewno, starscore, reviewcontent, lastvisitcount
+		SELECT rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno
 		FROM (
-		  SELECT ROWNUM as rnum, reviewno, starscore, reviewcontent, lastvisitcount
+		  SELECT ROWNUM as rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno
 		  FROM (
-		    SELECT reviewno, starscore, reviewcontent, lastvisitcount
+		    SELECT reviewno, starscore, reviewcontent, lastvisitcount, treatno
 		    FROM reviews
 		    WHERE userid = #{userid}
 		    ORDER BY reviewno DESC
@@ -36,7 +36,7 @@
 		SELECT count(*) FROM reviews
 	</select>
 	
-	<select id="countByUserid" parameterType="String" resultType="int">
+	<select id="countByUserid" parameterType="string" resultType="int">
 		SELECT count(*) FROM reviews WHERE userid = #{userid}
 	</select>
 	

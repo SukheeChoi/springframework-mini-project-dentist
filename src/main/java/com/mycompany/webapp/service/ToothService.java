@@ -19,4 +19,9 @@ public class ToothService {
 		List<Tooth> tooth = toothDao.selectByTreatno(treatno);
 		return tooth;
 	}
+	
+	public List<Tooth> getToothbyPatientssn(String patientssn) {
+		List<Tooth> tooth = toothDao.selectByPatientssn(patientssn);
+		return tooth;
+	}
 }
