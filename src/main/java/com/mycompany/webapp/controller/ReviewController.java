@@ -90,6 +90,7 @@ public class ReviewController {
 		return json;
 	}
 	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/postReview", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String postReview(@RequestParam String treatno, Review review) {
