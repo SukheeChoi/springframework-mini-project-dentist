@@ -1,8 +1,6 @@
 package com.mycompany.webapp.dto;
 
-import java.util.Date;
-
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mycompany.webapp.service.DeninfoService;
 
@@ -26,14 +24,4 @@ public class Reservation {
 	private String patientssn;
 	private String dendomain;
 	private String denname;
-	
-	@Resource
-	DeninfoService deninfoService;
-	
-	public Reservation() {
-		//DB에서 동적으로 가져와야 함.(IP주소는 고유하지만 변경 가능하기 때문.)
-		this.dendomain = deninfoService.selectDeninfo().getDendomain();
-		this.denname = deninfoService.selectDeninfo().getDenname();
-	}
-	
 }
