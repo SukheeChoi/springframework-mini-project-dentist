@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mycompany.webapp.dto.Attachment;
+import com.mycompany.webapp.dto.Deninfo;
 import com.mycompany.webapp.dto.Tooth;
 import com.mycompany.webapp.dto.Treatment;
 import com.mycompany.webapp.service.AttachmentService;
@@ -40,6 +41,7 @@ public class TreatmentController {
 	private DeninfoService deninfoService;
 	
 	////페이저 추가하기 전체 다 xml부터
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/getTreatmentByssn", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String getTreatmentByssn(String patientssn, @RequestParam(defaultValue = "ALL") String treattype) {
@@ -69,6 +71,7 @@ public class TreatmentController {
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("denname", deninfoService.selectDeninfo().getDenname());
+		jsonObject.put("dendomain", deninfoService.selectDeninfo().getDendomain());
 		jsonObject.put("treatment", treatments);
 		String json = jsonObject.toString();
 		return json;
@@ -86,6 +89,8 @@ public class TreatmentController {
 		Treatment treatment = treatmentService.getTreatment(treatno);
 		List<Tooth> teeth = toothService.getTooth(treatno);
 		List<Attachment> attachmentList = attachmentService.getAttachmentList(treatno);
+		Deninfo deninfo = deninfoService.selectDeninfo();
+		
 		log.info("attachmentList: " + attachmentList);
 		
 		JSONObject jsonObject = new JSONObject();
@@ -93,12 +98,19 @@ public class TreatmentController {
 		jsonObject.put("isreviewed", treatment.isIsreviewed());
 		jsonObject.put("treattype", treatment.getTreattype());
 		jsonObject.put("doctorname", treatment.getDoctorname());
+		
+		jsonObject.put("dendomain", deninfo.getDendomain());
+		jsonObject.put("denname", deninfo.getDenname());
+		jsonObject.put("denaddress", deninfo.getDenaddress());
+		
 		jsonObject.put("treatcost", treatment.getTreatcost());
 		jsonObject.put("treatdate", treatment.getTreatdate());
 		jsonObject.put("doctorcomment", treatment.getDoctorcomment());
 		jsonObject.put("materialcompany", treatment.getMaterialcompany());
 		jsonObject.put("patientssn", treatment.getPatientssn());
+		
 		jsonObject.put("teeth", teeth);
+		
 		jsonObject.put("attachmentList", attachmentList);
 		
 		String json = jsonObject.toString();

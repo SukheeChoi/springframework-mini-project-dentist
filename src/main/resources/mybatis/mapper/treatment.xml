@@ -10,21 +10,19 @@
 	</select>
 	
 	<select id="selectByPatientssn" resultType="treatment">
-		    SELECT treatno, isreviewed, treattype, doctorname
-					, treatcost, TO_CHAR(treatdate, 'YYYY-MM-DD') as treatdate, doctorcomment
-					, materialcompany, patientssn
-				FROM treatments
-				WHERE patientssn=#{patientssn}
-
+	    SELECT treatno, isreviewed, treattype, doctorname
+			, treatcost, TO_CHAR(treatdate, 'YYYY. MM. DD. (DY)') as treatdate, doctorcomment
+			, materialcompany, patientssn
+		FROM treatments
+		WHERE patientssn=#{patientssn}
 	</select>
 	
 	<select id="selectByTreatType" resultType="treatment">
-		    SELECT treatno, isreviewed, treattype, doctorname
-					, treatcost, TO_CHAR(treatdate, 'YYYY-MM-DD') as treatdate, doctorcomment
-					, materialcompany, patientssn
-				FROM treatments
-				WHERE patientssn=#{patientssn} AND treattype=#{treattype}
-
+	    SELECT treatno, isreviewed, treattype, doctorname
+			, treatcost, TO_CHAR(treatdate, 'YYYY. MM. DD. (DY)') as treatdate, doctorcomment
+			, materialcompany, patientssn
+		FROM treatments
+		WHERE patientssn=#{patientssn} AND treattype=#{treattype}
 	</select>
 	
 	<select id="selectBytreatno" parameterType="int" resultType="treatment">
@@ -54,7 +52,7 @@
 	<update id="update" parameterType="treatment">
 		UPDATE treatments
 		SET isreviewed=#{isreviewed}, treattype=#{treattype}, doctorname=#{doctorname}
-			, treatcost=#{treatcost}, treatdate=#{treatdate}, doctorcomment=#{doctorcomment}
+			, treatcost=#{treatcost}, treatdate=TO_DATE(#{treatdate},'YYYY. MM. DD. (DY)'), doctorcomment=#{doctorcomment}
 			, materialcompany=#{materialcompany}, patientssn=#{patientssn}
 		WHERE treatno=#{treatno}
 	</update>
