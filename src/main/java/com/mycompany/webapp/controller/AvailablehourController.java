@@ -86,9 +86,12 @@ public class AvailablehourController {
 		
 		availablehourService.update(availablehour);
 		
-     	reservationService.createReservation(reservation);
-     	JSONObject obj = new JSONObject();
-     	obj.put("msg", "hi~");
+		int result = reservationService.createReservation(reservation);
+		JSONObject obj = new JSONObject();
+		if(result == 1) {
+			obj.put("msg", "hi~");
+		} else {
+		}
 		
 		return obj.toString();
 	}
