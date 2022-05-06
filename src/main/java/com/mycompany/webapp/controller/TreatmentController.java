@@ -118,6 +118,7 @@ public class TreatmentController {
 		return json;
 	}
 	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/easteregg", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String getEasteregg(@RequestParam String patientssn) {
