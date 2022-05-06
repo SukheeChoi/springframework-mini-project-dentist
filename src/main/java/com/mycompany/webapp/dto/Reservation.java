@@ -1,8 +1,5 @@
 package com.mycompany.webapp.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.mycompany.webapp.service.DeninfoService;
 
 import lombok.Data;
 

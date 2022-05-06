@@ -1,6 +1,7 @@
 package com.mycompany.webapp.controller;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mycompany.webapp.dto.Availablehour;
 import com.mycompany.webapp.dto.Reservation;
 import com.mycompany.webapp.service.AvailablehourService;
+import com.mycompany.webapp.service.DeninfoService;
 import com.mycompany.webapp.service.ReservationService;
 
 import lombok.extern.log4j.Log4j2;
@@ -32,15 +34,22 @@ public class AvailablehourController {
 	private AvailablehourService availablehourService;
 	@Resource
 	private ReservationService reservationService;
+	@Resource
+	private DeninfoService deninfoService;
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@GetMapping(value="/getHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
-	public String getHour(Date date) {
+	public String getHour(Date date) throws Exception {
 		/*
 		 요청은 이런식 => getHour?date=2022/05/06
 		 http://localhost:8080/springframework-mini-project-dentist/availablehour/getHour?date=2022/05/06
 		 응답은 이런식 => {"date", "0000000001111111111100000000000"}
 		*/
+		log.info("date : " + date);
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		// 문자열 -> Date
+//		Date date2 = formatter.parse(date);
+//		log.info("date2 : " + date2);
 		Availablehour dbdate = availablehourService.selectBydate(date);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("date", dbdate.getAvailabletime());
@@ -77,10 +86,14 @@ public class AvailablehourController {
 		log.info("availableUpdate 의 reservation" + reservation);
 
 		availablehourService.update(availablehour);
-     	reservationService.createReservation(reservation);
 
-     	JSONObject obj = new JSONObject();
-     	obj.put("msg", "hi~");
+		int result = reservationService.createReservation(reservation);
+		JSONObject obj = new JSONObject();
+		if(result == 1) {
+			obj.put("msg", "hi~");
+		} else {
+		}
+
 		
 		return obj.toString();
 	}
