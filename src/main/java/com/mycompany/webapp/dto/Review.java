@@ -9,4 +9,5 @@ public class Review {
 	private double starscore;
 	private String reviewcontent;
 	private int lastvisitcount;
+	private String reviewdate;
 }

@@ -61,7 +61,9 @@ public class AvailablehourController {
 	@PostMapping(value="/setHour", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String availableUpdate(Date availabledate,@RequestParam Map<String,Object> param) {
+		
 		log.info("availableUpdate 실행");
+		
 		Availablehour availablehour = new Availablehour();
 		Reservation reservation = new Reservation();
 		availablehour.setAvailabledate(availabledate);
@@ -83,17 +85,17 @@ public class AvailablehourController {
 		reservation.setPatientssn((String)param.get("patientssn"));
 		log.info("availableUpdate 의 reservation" + reservation);
 
-
-		
 		availablehourService.update(availablehour);
-		
+
 		int result = reservationService.createReservation(reservation);
 		JSONObject obj = new JSONObject();
 		if(result == 1) {
 			obj.put("msg", "hi~");
 		} else {
 		}
+
 		
 		return obj.toString();
 	}
+	
 }
