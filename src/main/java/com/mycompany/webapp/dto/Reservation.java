@@ -1,8 +1,5 @@
 package com.mycompany.webapp.dto;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.mycompany.webapp.service.DeninfoService;
 
 import lombok.Data;
 
@@ -20,7 +17,7 @@ public class Reservation {
 	private String resdesc;
 	private String canceldesc;
 	private String submitdate;
-//	private Date submitdate;
+
 	private String patientssn;
 	private String dendomain;
 	private String denname;
