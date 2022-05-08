@@ -94,7 +94,6 @@ public class AvailablehourController {
 		} else {
 		}
 
-		
 		return obj.toString();
 	}
 	
