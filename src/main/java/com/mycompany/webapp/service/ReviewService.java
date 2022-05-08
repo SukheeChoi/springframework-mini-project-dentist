@@ -13,7 +13,7 @@ import com.mycompany.webapp.dto.Review;
 import lombok.extern.log4j.Log4j2;
 
 @Service
-@Log4j2
+@Log4j2  
 public class ReviewService {
 
 	@Resource

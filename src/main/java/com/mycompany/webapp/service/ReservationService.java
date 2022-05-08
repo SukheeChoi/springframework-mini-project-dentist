@@ -6,8 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.mycompany.webapp.dao.mybatis.DeninfoDao;
 import com.mycompany.webapp.dao.mybatis.ReservationDao;
-import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.dto.Deninfo;
 import com.mycompany.webapp.dto.Reservation;
 
 import lombok.extern.log4j.Log4j2;
@@ -17,9 +18,17 @@ import lombok.extern.log4j.Log4j2;
 public class ReservationService {
 	@Resource
 	private ReservationDao reservationDao;
+	@Resource
+	private DeninfoDao deninfoDao;
 	
 	public List<Reservation> getReservations(String patientssn){
-		return reservationDao.selectByPatientssn(patientssn);
+		List<Reservation> list = reservationDao.selectByPatientssn(patientssn);
+		Deninfo deninfo = deninfoDao.select();
+		for(Reservation res : list) {
+			res.setDendomain(deninfo.getDendomain());
+			res.setDenname(deninfo.getDenname());
+		}
+		return list;
 	}
 	
 	public int createReservation(Reservation reservation) {

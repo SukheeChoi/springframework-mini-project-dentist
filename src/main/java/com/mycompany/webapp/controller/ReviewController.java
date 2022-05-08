@@ -38,6 +38,7 @@ public class ReviewController {
 	@ResponseBody
 	public String getReviews(@RequestParam(defaultValue = "1") int pageNo) {
 		/*
+		 22/05/06 reviewdate 추가
 		 요청은 이런식 => getReviews?pageNo=1
 		 http://localhost:8082/springframework-mini-project-dentist/review/getReviews?pageNo=1
 		 응답은 이런식 =>  "reviewList": [
@@ -46,7 +47,8 @@ public class ReviewController {
 			            "reviewno": "500",
 			            "reviewcontent": "시험용 후기. 원장님이 친절하세요^^",
 			            "userid": "spring",
-			            "starscore": 4.5
+			            "starscore": 4.5,
+			            "reviewdate" : 2022/05/05
 			        }, ...
 			    ]
 			}
@@ -90,6 +92,7 @@ public class ReviewController {
 		return json;
 	}
 	
+	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@PostMapping(value="/postReview", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String postReview(@RequestParam String treatno, Review review) {

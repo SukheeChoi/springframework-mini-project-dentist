@@ -4,11 +4,11 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.ReviewDao">
 	<select id="selectByPage" parameterType="pager" resultType="review">
-		SELECT rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount
+		SELECT rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount, reviewdate
 		FROM (
-		  SELECT ROWNUM as rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount
+		  SELECT ROWNUM as rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount,reviewdate
 		  FROM (
-		    SELECT reviewno, userid, starscore, reviewcontent, lastvisitcount
+		    SELECT reviewno, userid, starscore, reviewcontent, lastvisitcount, reviewdate
 		    FROM reviews
 		    ORDER BY reviewno DESC
 		  )
@@ -18,11 +18,11 @@
 	</select>
 
 	<select id="selectByUserid" resultType="review">
-		SELECT rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno
+		SELECT rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno, reviewdate
 		FROM (
-		  SELECT ROWNUM as rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno
+		  SELECT ROWNUM as rnum, reviewno, starscore, reviewcontent, lastvisitcount, treatno, reviewdate
 		  FROM (
-		    SELECT reviewno, starscore, reviewcontent, lastvisitcount, treatno
+		    SELECT reviewno, starscore, reviewcontent, lastvisitcount, treatno, reviewdate
 		    FROM reviews
 		    WHERE userid = #{userid}
 		    ORDER BY reviewno DESC
@@ -48,8 +48,8 @@
 		<selectKey keyProperty="reviewno" resultType="int" order="BEFORE">
 			select REVIEWNO_SEQ.nextval from dual
 		</selectKey>
-		INSERT INTO reviews (reviewno, userid, starscore, reviewcontent, lastvisitcount)
-		VALUES (#{reviewno}, #{userid}, #{starscore}, #{reviewcontent}, #{lastvisitcount})
+		INSERT INTO reviews (reviewno, userid, starscore, reviewcontent, lastvisitcount,reviewdate)
+		VALUES (#{reviewno}, #{userid}, #{starscore}, #{reviewcontent}, #{lastvisitcount}, SYSDATE)
 	</insert>
 	
 	<update id="update" parameterType="review">
