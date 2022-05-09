@@ -63,6 +63,7 @@ public class ReviewController {
 		//평균 별점 정보 가져와서 전달.
 		float averageStars = reviewService.getAverageStars();
 		
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("averageStars", averageStars);
 		jsonObject.put("totalReviewNum", totalReviewNum);
@@ -87,6 +88,7 @@ public class ReviewController {
 		jsonObject.put("pager", jsonArray);
 		
 		jsonObject.put("reviewList", list);
+		
 		String json = jsonObject.toString();
 		log.info(json);
 		return json;

@@ -6,7 +6,7 @@
 	<select id="selectByPage" parameterType="pager" resultType="review">
 		SELECT rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount, reviewdate
 		FROM (
-		  SELECT ROWNUM as rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount,reviewdate
+		  SELECT ROWNUM as rnum, reviewno, userid, starscore, reviewcontent, lastvisitcount, reviewdate
 		  FROM (
 		    SELECT reviewno, userid, starscore, reviewcontent, lastvisitcount, reviewdate
 		    FROM reviews
@@ -41,7 +41,7 @@
 	</select>
 	
 	<select id="averageStars" resultType="float">
-		SELECT avg(starscore) FROM reviews
+		select round(avg(starscore),2) from reviews
 	</select>
 	
 	<insert id="insert" parameterType="review">
