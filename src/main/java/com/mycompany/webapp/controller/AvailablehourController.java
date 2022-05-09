@@ -81,7 +81,7 @@ public class AvailablehourController {
 		reservation.setIspending(true);
 		reservation.setIsdiscount(true);
 		reservation.setResdesc((String)param.get("reservation"));
-		reservation.setCanceldesc("?");
+		reservation.setCanceldesc((String)param.get("canceldesc"));
 		reservation.setPatientssn((String)param.get("patientssn"));
 		log.info("availableUpdate 의 reservation" + reservation);
 
