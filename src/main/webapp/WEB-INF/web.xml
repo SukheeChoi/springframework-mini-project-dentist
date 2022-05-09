@@ -34,7 +34,8 @@
 		<!-- Servlet 3.0에서 지원하는 multipart/form-data 파싱 기능을 위한 설정 -->
 		<multipart-config>
 			<!-- 임시 파일이 저장될 폴더의 절대 경로만 가능 -->
-			<location>C:/</location>
+			<location>/Users/choisukhee/Documents/2022/오스템 임플란트/치과서버/</location>
+<!-- 			<location>C:/</location> -->
 			<!-- 파일 크기가 10MB 이하만 허용(1024*1024*10) -->
 			<max-file-size>10485760</max-file-size>
 			<!-- multipart/form-data 전체 크기가 30MB 이하만 허용(1024*1024*30) -->
