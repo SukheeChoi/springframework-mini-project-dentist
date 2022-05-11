@@ -5,10 +5,8 @@ import lombok.Data;
 @Data
 public class Attachment {
 	private int treatno;
-	private String bcontenttype;
-	private String boriginalfilename; 
-	private String bsavedfilename; 
-	private String acontenttype; 
-	private String aoriginalfilename; 
-	private String asavedfilename; 
+	private String contenttype;
+	private String originalfilename; 
+	private String savedfilename; 
+	private boolean isafter; 
 }

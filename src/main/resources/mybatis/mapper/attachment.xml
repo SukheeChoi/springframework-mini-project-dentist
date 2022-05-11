@@ -4,14 +4,15 @@
 
 <mapper namespace="com.mycompany.webapp.dao.mybatis.AttachmentDao">
 	<select id="selectByTreatno" parameterType="int" resultType="attachment">
-		SELECT treatno, bcontenttype, boriginalfilename, bsavedfilename, acontenttype, aoriginalfilename, asavedfilename FROM attachments WHERE treatno=#{treatno}
+		SELECT treatno, contenttype, originalfilename, savedfilename, isafter FROM attachments WHERE treatno=#{treatno}
 	</select>
 	
 	<insert id="insert" parameterType="attachment">
-		INSERT INTO attachments (treatno, bcontenttype, boriginalfilename, bsavedfilename, acontenttype, aoriginalfilename, asavedfilename)
-		VALUES (#{treatno}, #{bcontenttype}, #{boriginalfilename}, #{bsavedfilename}, #{acontenttype}, #{aoriginalfilename}, #{asavedfilename})
+		INSERT INTO attachments (treatno, contenttype, originalfilename, savedfilename, isafter)
+		VALUES (#{treatno}, #{contenttype}, #{originalfilename}, #{savedfilename}, #{isafter})
 	</insert>
 	
+	<!-- 아래 2개의 매퍼는 수정해야하지만(DB에서 컬럼구조 변경.), 구현하지 않을 기능이라 시간관계상 수정 생략. -->
 	<update id="update" parameterType="attachment">
 		UPDATE attachments SET bcontenttype=#{newattachment.bcontenttype}, boriginalfilename=#{newattachment.boriginalfilename}, bsavedfilename=#{newattachment.bsavedfilename}
 							   acontenttype=#{newattachment.acontenttype}, aoriginalfilename=#{newattachment.aoriginalfilename}, asavedfilename=#{newattachment.asavedfilename} 
