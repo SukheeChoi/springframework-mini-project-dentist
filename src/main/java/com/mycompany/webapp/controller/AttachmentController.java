@@ -16,7 +16,6 @@ import com.mycompany.webapp.service.TreatmentService;
 
 import lombok.extern.log4j.Log4j2;
 
-
 @CrossOrigin(origins="*", allowedHeaders = "*")
 @Controller
 @RequestMapping("/attachment")
@@ -27,7 +26,6 @@ public class AttachmentController {
 	private TreatmentService treatmentService;
 	@Resource
 	private AttachmentService attachmentService;
-	
 	
 	@CrossOrigin(origins="*", allowedHeaders = "*")
 	@RequestMapping(value="/getAttachmentList", produces="application/json; charset=UTF-8")
